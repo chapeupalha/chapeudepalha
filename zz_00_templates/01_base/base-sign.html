@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Acesso | Rede ILPF</title>
+    <!-- Favicon-->
+    <link rel="icon" href="{% static "favicon.ico" %}" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link href="{% static "material/plugins/bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+    <!-- Waves Effect Css -->
+    <link href="{% static "material/plugins/node-waves/waves.css" %}" rel="stylesheet" />
+    <!-- Animation Css -->
+    <link href="{% static "material/plugins/animate-css/animate.css" %}" rel="stylesheet" />
+    <!-- Sweetalert Css -->
+    <link href="{% static "material/plugins/sweetalert/sweetalert.css" %}" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="{% static "material/css/style.css" %}" rel="stylesheet">
+
+
+
+
+    <!-- Jquery Core Js -->
+    <script src="{% static "material/plugins/jquery/jquery.min.js" %}"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="{% static "material/plugins/bootstrap/js/bootstrap.js" %}"></script>
+    <!-- Select Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-select/js/bootstrap-select.js" %}"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="{% static "material/plugins/jquery-slimscroll/jquery.slimscroll.js" %}"></script>
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-notify/bootstrap-notify.js" %}"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static "material/plugins/node-waves/waves.js" %}"></script>
+    <!-- Validation Plugin Js -->
+    <script src="{% static "material/plugins/jquery-validation/jquery.validate.js" %}"></script>
+    <!-- Input Mask Plugin Js -->
+    <script src="{% static "material/plugins/jquery-inputmask/jquery.inputmask.bundle.js" %}"></script>
+    <!-- SweetAlert Plugin Js -->
+    <script src="{% static "material/plugins/sweetalert/sweetalert.min.js" %}"></script>
+    <!-- Custom Js -->
+    <script src="{% static "material/js/admin.js" %}"></script>
+    <script src="{% static "material/js/pages/examples/sign-in.js" %}"></script>
+    <script src="{% static "material/js/pages/ui/dialogs.js" %}"></script>
+
+    <!-- Demo Js -->
+    <script src={% static "material/js/demo.js" %}"></script>
+
+
+    {% block content_js %}{% endblock %}
+</head>
+
+{% block content %}{% endblock %}
+
+</html>

@@ -1,0 +1,44 @@
+﻿.theme-redeilpf .navbar {
+  background-color: #00A847; }
+
+.theme-redeilpf .navbar-brand {
+  color: #fff; }
+  .theme-redeilpf .navbar-brand:hover {
+    color: #fff; }
+  .theme-redeilpf .navbar-brand:active {
+    color: #fff; }
+  .theme-redeilpf .navbar-brand:focus {
+    color: #fff; }
+
+.theme-redeilpf .nav > li > a {
+  color: #fff; }
+  .theme-redeilpf .nav > li > a:hover {
+    background-color: transparent; }
+  .theme-redeilpf .nav > li > a:focus {
+    background-color: transparent; }
+
+.theme-redeilpf .nav .open > a {
+  background-color: transparent; }
+  .theme-redeilpf .nav .open > a:hover {
+    background-color: transparent; }
+  .theme-redeilpf .nav .open > a:focus {
+    background-color: transparent; }
+
+.theme-redeilpf .bars {
+  color: #fff; }
+
+.theme-redeilpf .sidebar .menu .list li.active {
+  background-color: transparent; }
+  .theme-redeilpf .sidebar .menu .list li.active > :first-child i, .theme-redeilpf .sidebar .menu .list li.active > :first-child span {
+    color: #00A847; }
+
+.theme-redeilpf .sidebar .menu .list .toggled {
+  background-color: transparent; }
+
+.theme-redeilpf .sidebar .menu .list .ml-menu {
+  background-color: transparent; }
+
+.theme-redeilpf .sidebar .legal {
+  background-color: #fff; }
+  .theme-redeilpf .sidebar .legal .copyright a {
+    color: #00A847 !important; }
