@@ -1,0 +1,46 @@
+{% extends "01_base/base-sign.html" %}
+{% load static %}
+
+{% block content_js %}
+    {# colocar scripts desse pagina #}
+{% endblock %}
+
+{% block content %}
+
+    <form id="sign_in" method="POST">
+        {% csrf_token %}
+        <div class="msg">Faça o seu login</div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="material-icons">person</i>
+            </span>
+            <div class="form-line">
+                <input type="text" class="form-control" name="username" placeholder="E-mail" required autofocus>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="material-icons">lock</i>
+            </span>
+            <div class="form-line">
+                <input type="password" class="form-control" name="password" placeholder="Senha" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <button class="btn btn-block btn-lg bg-light-green waves-effect" type="submit">Acessar</button>
+            </div>
+        </div>
+
+        <div class="row m-t-15 m-b--20">
+            <div class="col-xs-6"></div>
+            <div class="col-xs-6 align-right">
+                <a href="#">Esqueci minha senha?</a>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+

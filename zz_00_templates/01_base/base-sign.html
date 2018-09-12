@@ -4,9 +4,10 @@
 <html>
 
 <head>
+
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Acesso | Rede ILPF</title>
+    <title>Acesso | Chapéu de Palha</title>
     <!-- Favicon-->
     <link rel="icon" href="{% static "favicon.ico" %}" type="image/x-icon">
 
@@ -24,8 +25,24 @@
     <!-- Custom Css -->
     <link href="{% static "material/css/style.css" %}" rel="stylesheet">
 
+</head>
 
+<body class="login-page">
 
+    <div class="login-box">
+        <div class="logo js-sweetalert">
+            <a href="javascript:void(0);">Chapéude<b>Palha</b></a>
+            <small>Programa Chapéu de Palha</small>
+            <button class="btn btn-primary waves-effect" data-type="autoclose-timer" id="user-exist" style="display: none;"></button>
+        </div>
+        <div class="card">
+            <div class="body">
+
+                {% block content %}{% endblock %}
+
+            </div>
+        </div>
+    </div>
 
     <!-- Jquery Core Js -->
     <script src="{% static "material/plugins/jquery/jquery.min.js" %}"></script>
@@ -49,14 +66,11 @@
     <script src="{% static "material/js/admin.js" %}"></script>
     <script src="{% static "material/js/pages/examples/sign-in.js" %}"></script>
     <script src="{% static "material/js/pages/ui/dialogs.js" %}"></script>
-
     <!-- Demo Js -->
     <script src={% static "material/js/demo.js" %}"></script>
 
-
     {% block content_js %}{% endblock %}
-</head>
 
-{% block content %}{% endblock %}
+</body>
 
 </html>

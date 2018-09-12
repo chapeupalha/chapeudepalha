@@ -301,8 +301,9 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>AQUI SERA RENDERIZADO O CONTEUDO</h2>
-                <img src="{{ media_url }}{{ teste.doc_relatorio }}" alt="">
+
+                {% block content %}{% endblock %}
+
             </div>
         </div>
     </section>

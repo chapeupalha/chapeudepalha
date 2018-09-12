@@ -16,8 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from www.views import make_login, make_logout
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', include('www.urls'))
+    path('', include('dashboard.urls')),
+    path('site/', include('www.urls')),
+
+
+    path('login/', make_login, name='make_login'),
+    path('logout/', make_logout, name='make_login'),
 ]
