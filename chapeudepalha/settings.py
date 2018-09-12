@@ -25,7 +25,7 @@ SECRET_KEY = '1b#(@fs3-ok2gxldawogx%amk*-!=(6bzht$!6y6g^wcx00yx@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'chapeudepalha.bp62zyympf.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
