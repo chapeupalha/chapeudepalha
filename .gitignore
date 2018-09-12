@@ -19,6 +19,7 @@ lib64/
 parts/
 sdist/
 var/
+.idea/
 wheels/
 *.egg-info/
 .installed.cfg
@@ -107,8 +108,3 @@ venv.bak/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-
-
-# IDE
-.idea
-.idea/*
