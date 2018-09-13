@@ -6,34 +6,34 @@ import datetime
 from django.contrib.auth.models import User
 
 
-class EstadoCivil(models.Model):
-    id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do estado civil")
-
-
-class TipoDocumentoEmpregador(models.Model):
-    id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do tipo de documento do empregador")
-
-
-class GrauEscolaridade(models.Model):
-    id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do grau da escolaridade")
-
-
-class TurnoEscolar(models.Model):
-    id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do Turno")
-
-
-class Deficiencia(models.Model):
-    id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=500, blank=True, verbose_name="Nome da Deficiência")
-
-
-class Raca(models.Model):
-    id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=500, blank=True, verbose_name="Nome da raça do participante")
+# class EstadoCivil(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do estado civil")
+#
+#
+# class TipoDocumentoEmpregador(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do tipo de documento do empregador")
+#
+#
+# class GrauEscolaridade(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do grau da escolaridade")
+#
+#
+# class TurnoEscolar(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do Turno")
+#
+#
+# class Deficiencia(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome da Deficiência")
+#
+#
+# class Raca(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome da raça do participante")
 
 
 # class DadosParticipante(models.Model):
