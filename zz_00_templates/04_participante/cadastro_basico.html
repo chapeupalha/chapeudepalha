@@ -3,54 +3,28 @@
 
 {% block content_participante %}
 
-<div>dados participante</div>
-
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
                 <h2>
-                    INPUT
-                    <small>Different sizes and widths</small>
+                    DADOS DO PARTICIPANTE
+                    <small>Dados do participante</small>
                 </h2>
             </div>
             <div class="body">
-                <h2 class="card-inside-title">Different Widths</h2>
                 <div class="row clearfix">
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <div class="form-group">
                             <div class="form-line">
-                                <input type="text" class="form-control" placeholder="col-sm-6">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input type="text" class="form-control" placeholder="col-sm-6">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input type="text" class="form-control" placeholder="col-sm-4">
+                                {{ form_participante.nome_completo }}
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <div class="form-line">
-                                <input type="text" class="form-control" placeholder="col-sm-4">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input type="text" class="form-control" placeholder="col-sm-4">
+                                {{ form_participante.cpf }}
                             </div>
                         </div>
                     </div>
@@ -59,34 +33,366 @@
                     <div class="col-sm-3">
                         <div class="form-group">
                             <div class="form-line">
-                                <input type="text" class="form-control" placeholder="col-sm-3">
+                                {{ form_participante.nis_pis }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.rg }}
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <div class="form-line">
-                                <input type="text" class="form-control" placeholder="col-sm-3">
+                                {{ form_participante.rg_orgao_exp }}
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <div class="form-line">
-                                <input type="text" class="form-control" placeholder="col-sm-3">
+                                {{ form_participante.rg_uf }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.nome_mae }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.nome_pai }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.dt_nascimento }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.sexo }}
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <div class="form-line">
-                                <input type="text" class="form-control" placeholder="col-sm-3">
+                                {{ form_participante.estado_civil }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.municipio_naturalidade }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.titulo_eleitor }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.ctps }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.ctps_serie }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.ctps_uf }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.tipo_documento_empregador }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.cnpj_ultimo_empregador }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.nome_empresa }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.funcao }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.dt_entrada }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.dt_saida }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="card-inside-title"><strong>Quantidade de filhos por faixa etária</strong></h2>
+
+                <div class="row clearfix">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.qtd_filhos_0_m_6_m }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.qtd_filhos_7_m_3_a }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.qtd_filhos_4_a_7_a }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.qtd_filhos_8_a_12_a }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.qtd_filhos_13_a_17_a }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.qtd_filhos_18_a_29_a }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.gestante_familia }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.alfabetizado }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.estudando }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.turno_atividade_escolar }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.grau_escolaridade }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.raca }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.portador_deficiencia }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="card">
+            <div class="header">
+                <h2>
+                    ENDEREÇO
+                    <small>Endereço do participante</small>
+                </h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.logradouro }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.numero }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.complemento }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.cep }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.fone }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.celular }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Dados Econômicos
+                    <small>Dados econômicos do participante</small>
+                </h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.renda_mensal }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.qtd_pessoas_casa }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {{ form_participante.qtd_pessoas_contribuem_renda }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 

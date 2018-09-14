@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from core.models import Status_Geral
 from participante.models import Participante
 
-from participante.forms import cadastro_participante
+from participante.forms import cadastro_participante, cadastro_dados_participante
 
 
 def cadastro(request):
@@ -40,6 +40,9 @@ def novo_cadastro(request):
 def cadastro_basico(request, id_participante):
     tab_active = 'participante'
     beneficiario = Participante.objects.get(id=id_participante)
+
+    form_participante = cadastro_dados_participante(request.POST or None, instance=beneficiario)
+
     return render(request, '04_participante/cadastro_basico.html', locals())
 
 
