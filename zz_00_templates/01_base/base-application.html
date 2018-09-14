@@ -19,10 +19,17 @@
     <link href="{% static "material/plugins/node-waves/waves.css" %}" rel="stylesheet" />
     <!-- Animation Css -->
     <link href="{% static "material/plugins/animate-css/animate.css" %}" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="{% static "material/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" %}" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="{% static "material/css/style.css" %}" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{% static "material/css/theme-rede-ilpf.css" %}" rel="stylesheet" />
+
+    {% block content_css %}{% endblock %}
+
 </head>
 
 <body class="theme-redeilpf">
@@ -242,10 +249,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="participante">Cadastrar beneficiário</a>
+                                <a href="/participante">Cadastrar beneficiário</a>
                             </li>
                             <li>
-                                <a href="participante/consulta">Consultar beneficiário</a>
+                                <a href="/participante/consultar">Consultar beneficiário</a>
                             </li>
                         </ul>
                     </li>
@@ -313,6 +320,9 @@
     <script src="{% static "material/js/admin.js" %}"></script>
     <!-- Demo Js -->
     <script src="{% static "material/js/demo.js" %}"></script>
+
+    {% block content_js %}{% endblock %}
+
 </body>
 
 </html>

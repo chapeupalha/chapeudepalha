@@ -53,3 +53,16 @@ def cadastro_documentos(request, id_participante):
     tab_active = 'documento'
     beneficiario = Participante.objects.get(id=id_participante)
     return render(request, '04_participante/cadastro_documentos.html', locals())
+
+
+def consultar_beneficiario(request):
+
+    all_participantes = Participante.objects.all()
+
+    return render(request, '04_participante/consultar_beneficiario.html', locals())
+
+
+def consultar_dados_beneficiario(request, id_participante):
+
+
+    return render(request, '04_participante/consultar_dados_beneficiario.html', locals())
