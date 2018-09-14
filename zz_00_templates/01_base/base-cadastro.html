@@ -1,0 +1,42 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header"><h2>CADASTRO COMPLETO</h2></div>
+            <div class="body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="{% if tab_active == 'participante' %}active{% endif %}">
+                        <a href="/participante/cadastro/{{ id_participante }}/">
+                            <i class="material-icons">report</i> PARTICIPANTE
+                        </a>
+                    </li>
+                    <li role="presentation" class="{% if tab_active == 'representante' %}active{% endif %}">
+                        <a href="/participante/cadastro/{{ id_participante }}/representante">
+                            <i class="material-icons">report</i> REPRESENTANTE LEGAL
+                        </a>
+                    </li>
+                    <li role="presentation" class="{% if tab_active == 'documento' %}active{% endif %}">
+                        <a href="/participante/cadastro/{{ id_participante }}/documentos">
+                            <i class="material-icons">report</i> DOCUMENTOS
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active in">
+                        <b>FORMULARIO DOS DADOS DO PARTICIPANTE</b>
+                        {% block content_participante %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'core',
     'www',
     'dashboard',
     'participante',
@@ -80,30 +81,30 @@ WSGI_APPLICATION = 'chapeudepalha.wsgi.application'
 ########################
 #   DATABASE PRODUÇÃO  #
 ########################
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd289aq1ebrcped',
-        'HOST': 'ec2-54-163-245-44.compute-1.amazonaws.com',
-        'PORT': '5432',
-        'USER': 'ynpmjlbyeekfnd',
-        'PASSWORD': '18c1aa5793aed0b60c1e10b28c93bdc44302c822e8c6ba285c04b2e074e0fdb5'
-    }
-}
+# # DATABASES = {
+# #     'default': {
+# #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+# #         'NAME': 'd289aq1ebrcped',
+# #         'HOST': 'ec2-54-163-245-44.compute-1.amazonaws.com',
+# #         'PORT': '5432',
+# #         'USER': 'ynpmjlbyeekfnd',
+# #         'PASSWORD': '18c1aa5793aed0b60c1e10b28c93bdc44302c822e8c6ba285c04b2e074e0fdb5'
+# #     }
+# # }
 
 ##########################
 #   DATABASE LOCALHOST   #
 ##########################
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'chapeudepalha',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#         'USER': 'chapeudepalha',
-#         'PASSWORD': 'chapeudepalha'
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'chapeudepalha',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        'USER': 'chapeudepalha',
+        'PASSWORD': 'chapeudepalha'
+    }
+}
 
 
 
