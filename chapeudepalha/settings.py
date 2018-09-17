@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'www',
     'dashboard',
     'participante',
+    'atividade',
 ]
 
 MIDDLEWARE = [

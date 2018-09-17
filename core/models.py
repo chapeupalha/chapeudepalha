@@ -11,6 +11,9 @@ class Estado(models.Model):
     uf = models.CharField(max_length=50, blank=True, null=True)
     regiao = models.ForeignKey(Regiao, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.nome
+
 
 class Municipio(models.Model):
     codigo = models.IntegerField(blank=True, null=True)
@@ -21,6 +24,10 @@ class Municipio(models.Model):
     latitude = models.CharField(max_length=50, blank=True, null=True)
     longitude = models.CharField(max_length=50, blank=True, null=True)
 
+    def __str__(self):
+        nome_municipio = "[" + str(self.uf) + "] " + str(self.nome)
+        return nome_municipio
+
 
 
 class Status_Geral(models.Model):
@@ -30,5 +37,5 @@ class Status_Geral(models.Model):
     next = models.IntegerField(blank=True, null=True)
     ordem = models.IntegerField(blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.texto

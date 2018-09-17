@@ -1,0 +1,36 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <div class="row clearfix">
+                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                        <h2>Atividades de trabalho de campo</h2>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <a href="/atividade/cadastro">
+                            <button type="button" class="btn btn-warning btn-xs btn-block waves-effect">
+                                <i class="material-icons">add_circle</i>
+                                <span>Cadastrar Atividade</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        Conteudo renderizado
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

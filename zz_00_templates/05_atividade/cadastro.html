@@ -1,0 +1,103 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static "material/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" %}" rel="stylesheet" />
+    <!-- Wait Me Css -->
+    <link href="{% static "material/plugins/waitme/waitMe.css" %}" rel="stylesheet" />
+    <!-- Bootstrap Select Css -->
+    <link href="{% static "material/plugins/bootstrap-select/css/bootstrap-select.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Atividade de Trabalho de campo
+                    <small>Cadastro de atividade de trabalho</small>
+                </h2>
+            </div>
+            <div class="body">
+                <form id="sign_up" method="POST">
+                    {% csrf_token %}
+                    <div class="row clearfix">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group form-group-lg">
+                                <div class="form-line">
+                                    {{ form_atividade.nome }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <h2 class="card-inside-title">Descrição da atividade:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    {{ form_atividade.descricao }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="card-inside-title">Equipe de trabalho da atividade:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    {{ form_atividade.at_equipe_trabalho }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="card-inside-title">Unidade gestora da atividade:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    {{ form_atividade.at_unidade_gestora }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="card-inside-title">Tipo da atividade de trabalho:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    {{ form_atividade.at_tipo_atividade }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="card-inside-title">Municipio da atividade de trabalho:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    {{ form_atividade.at_municipio }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-offset-8 col-md-4 col-sm-12">
+                            <button type="submit" class="btn btn-primary btn-block">Cadastrar Atividade</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Autosize Plugin Js -->
+    <script src="{% static "material/plugins/autosize/autosize.js" %}"></script>
+    <!-- Moment Plugin Js -->
+    <script src="{% static "material/plugins/momentjs/moment.js" %}"></script>
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" %}"></script>
+    <!-- Custom Js -->
+    <script src="{% static "material/js/admin.js" %}"></script>
+    <script src="{% static "material/js/pages/forms/basic-form-elements.js" %}"></script>
+{% endblock %}

@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('dashboard.urls')),
     path('site/', include('www.urls')),
     path('participante/', include('participante.urls')),
+    path('atividade/', include('atividade.urls')),
 
 
     path('login/', make_login, name='make_login'),
