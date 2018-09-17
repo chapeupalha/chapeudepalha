@@ -5,37 +5,55 @@ import datetime
 
 from django.contrib.auth.models import User
 from core.models import Regiao, Estado, Municipio, Status_Geral
-from core.choices import CHOICES_SEXO, CHOICES_UF
+from core.choices import CHOICES_SEXO, CHOICES_UF, CHOICES_SIM_NAO
 
 
 class EstadoCivil(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do estado civil")
 
+    def __str__(self):
+        return self.nome
+
 
 class TipoDocumentoEmpregador(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do tipo de documento do empregador")
+
+    def __str__(self):
+        return self.nome
 
 
 class GrauEscolaridade(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do grau da escolaridade")
 
+    def __str__(self):
+        return self.nome
+
 
 class TurnoEscolar(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome do Turno")
+
+    def __str__(self):
+        return self.nome
 
 
 class Deficiencia(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome da Deficiência")
 
+    def __str__(self):
+        return self.nome
+
 
 class Raca(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome da raça do participante")
+
+    def __str__(self):
+        return self.nome
 
 
 class Participante(models.Model):
@@ -50,7 +68,7 @@ class Participante(models.Model):
     cpf = models.CharField(max_length=14, null=True, blank=True, verbose_name="Número do CPF")
     rg = models.CharField(max_length=20, null=True, blank=True, verbose_name="Número do RG")
     rg_orgao_exp = models.CharField(max_length=20, null=True, blank=True, verbose_name="Órgão expedidor do RG")
-    rg_uf = models.CharField(max_length=2, null=True, blank=True, verbose_name="UF do RG")
+    rg_uf = models.CharField(max_length=20, null=True, blank=True, choices=CHOICES_UF, verbose_name="UF do RG")
 
     nome_pai = models.CharField(max_length=150, null=True, blank=True, verbose_name="Nome do Pai")
     nome_mae = models.CharField(max_length=150, null=True, blank=True, verbose_name="Nome da Mãe")
@@ -76,9 +94,9 @@ class Participante(models.Model):
     qtd_filhos_8_a_12_a = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de filhos entre 8 a 12 anos")
     qtd_filhos_13_a_17_a = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de filhos entre 13 a 17 anos")
     qtd_filhos_18_a_29_a = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de filhos entre 18 a 29 anos")
-    gestante_familia = models.BooleanField(null=True, blank=True, verbose_name="Existe gestante na familia")
-    alfabetizado = models.BooleanField(null=True, blank=True, verbose_name="participante é alfabetizado")
-    estudando = models.BooleanField(null=True, blank=True, verbose_name="Está estudando")
+    gestante_familia = models.BooleanField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="Existe gestante na familia")
+    alfabetizado = models.BooleanField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="participante é alfabetizado")
+    estudando = models.BooleanField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="Está estudando")
     turno_atividade_escolar = models.ForeignKey(TurnoEscolar, on_delete=models.PROTECT, null=True, blank=True, verbose_name="Turno em que esta estudando atualmente")
     grau_escolaridade = models.ForeignKey(GrauEscolaridade, on_delete=models.PROTECT, null=True, blank=True, verbose_name="Grau de escolaridade do participante")
     raca = models.ForeignKey(Raca, on_delete=models.PROTECT, null=True, blank=True, verbose_name="Raça do participante")
@@ -104,7 +122,9 @@ class Participante(models.Model):
     verificacao_rg = models.BooleanField(null=True, verbose_name="Apresentou copia do rg")
     verificacao_endereco = models.BooleanField(null=True, verbose_name="Apresentou copia do endereco")
 
+    # pendencia_participante = models.IntegerField(null=True, blank=True, verbose_name="Alguma pendência nos dados do participante")
+
     status = models.ForeignKey(Status_Geral, null=True, blank=True, on_delete=models.PROTECT, verbose_name="Status do participante")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nome_completo

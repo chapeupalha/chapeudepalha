@@ -1,5 +1,7 @@
 CHOICES_SEXO = (("M", "Masculino"),("F", "Feminino"),("ND", "Não declarar"))
 
+CHOICES_SIM_NAO = ((1, "Sim"), (0, "Não"))
+
 CHOICES_UF = (
     ("AC", "Acre"),("AL", "Alagoas"),("AP", "Amapá"),("AM", "Amazonas"),("BA", "Bahia"),("CE", "Ceará"),
     ("DF", "Distrito Federal"),("ES", "Espírito Santo"),("GO", "Goiás"),("MA", "Maranhão"),("MT", "Mato Grosso"),

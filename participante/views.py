@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 
-from core.models import Status_Geral
-from participante.models import Participante
+from core.models import Status_Geral, Municipio
+from participante.models import Participante, EstadoCivil, TipoDocumentoEmpregador, GrauEscolaridade, TurnoEscolar, Deficiencia, Raca
 
 from participante.forms import cadastro_participante, cadastro_dados_participante
 
