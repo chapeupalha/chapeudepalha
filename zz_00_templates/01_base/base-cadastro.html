@@ -12,17 +12,32 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="{% if tab_active == 'participante' %}active{% endif %}">
                         <a href="/participante/cadastro/{{ id_participante }}/">
-                            <i class="material-icons">report</i> PARTICIPANTE
+                            {% if beneficiario.verificacao_dados_participante %}
+                                <i class="material-icons">check_circle</i>
+                            {% else %}
+                                <i class="material-icons">report</i>
+                            {% endif %}
+                            PARTICIPANTE
                         </a>
                     </li>
                     <li role="presentation" class="{% if tab_active == 'representante' %}active{% endif %}">
                         <a href="/participante/cadastro/{{ id_participante }}/representante">
-                            <i class="material-icons">report</i> REPRESENTANTE LEGAL
+                            {% if beneficiario.verificacao_representante_legal %}
+                                <i class="material-icons">check_circle</i>
+                            {% else %}
+                                <i class="material-icons">report</i>
+                            {% endif %}
+                            REPRESENTANTE LEGAL
                         </a>
                     </li>
                     <li role="presentation" class="{% if tab_active == 'documento' %}active{% endif %}">
                         <a href="/participante/cadastro/{{ id_participante }}/documentos">
-                            <i class="material-icons">report</i> DOCUMENTOS
+                            {% if beneficiario.verificacao_documentacao %}
+                                <i class="material-icons">check_circle</i>
+                            {% else %}
+                                <i class="material-icons">report</i>
+                            {% endif %}
+                            DOCUMENTOS
                         </a>
                     </li>
                 </ul>

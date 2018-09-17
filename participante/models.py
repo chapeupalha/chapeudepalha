@@ -94,9 +94,9 @@ class Participante(models.Model):
     qtd_filhos_8_a_12_a = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de filhos entre 8 a 12 anos")
     qtd_filhos_13_a_17_a = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de filhos entre 13 a 17 anos")
     qtd_filhos_18_a_29_a = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de filhos entre 18 a 29 anos")
-    gestante_familia = models.BooleanField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="Existe gestante na familia")
-    alfabetizado = models.BooleanField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="participante é alfabetizado")
-    estudando = models.BooleanField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="Está estudando")
+    gestante_familia = models.IntegerField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="Existe gestante na familia")
+    alfabetizado = models.IntegerField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="participante é alfabetizado")
+    estudando = models.IntegerField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="Está estudando")
     turno_atividade_escolar = models.ForeignKey(TurnoEscolar, on_delete=models.PROTECT, null=True, blank=True, verbose_name="Turno em que esta estudando atualmente")
     grau_escolaridade = models.ForeignKey(GrauEscolaridade, on_delete=models.PROTECT, null=True, blank=True, verbose_name="Grau de escolaridade do participante")
     raca = models.ForeignKey(Raca, on_delete=models.PROTECT, null=True, blank=True, verbose_name="Raça do participante")
@@ -115,14 +115,18 @@ class Participante(models.Model):
     # beneficiario_indicado = models.BooleanField(null=True, verbose_name="Participante será o indicado")
     # verificacao_listagem_desligado = models.BooleanField(null=True, verbose_name="Apresentou copia da listagem de desligados")
 
-    verificacao_nis = models.BooleanField(null=True, verbose_name="Apresentou copia do ")
-    verificacao_contrato_trabalho = models.BooleanField(null=True, verbose_name="Apresentou copia do contrato de trabalho")
-    verificacao_ctps = models.BooleanField(null=True, verbose_name="Apresentou copia do ctps")
-    verificacao_cpf = models.BooleanField(null=True, verbose_name="Apresentou copia do cpf")
-    verificacao_rg = models.BooleanField(null=True, verbose_name="Apresentou copia do rg")
-    verificacao_endereco = models.BooleanField(null=True, verbose_name="Apresentou copia do endereco")
+    verificacao_nis = models.BooleanField(default=False, verbose_name="Apresentou copia do NIS")
+    verificacao_contrato_trabalho = models.BooleanField(default=False, verbose_name="Apresentou copia do contrato de trabalho")
+    verificacao_ctps = models.BooleanField(default=False, verbose_name="Apresentou copia do ctps")
+    verificacao_cpf = models.BooleanField(default=False, verbose_name="Apresentou copia do cpf")
+    verificacao_rg = models.BooleanField(default=False, verbose_name="Apresentou copia do rg")
+    verificacao_endereco = models.BooleanField(default=False, verbose_name="Apresentou copia do endereco")
 
-    # pendencia_participante = models.IntegerField(null=True, blank=True, verbose_name="Alguma pendência nos dados do participante")
+    verificacao_dados_participante = models.BooleanField(default=False, verbose_name="Alguma pendência nos dados do participante")
+    verificacao_representante_legal = models.BooleanField(default=False, verbose_name="Alguma pendência nos dados do representante legal")
+    verificacao_documentacao = models.BooleanField(default=False, verbose_name="Alguma pendência na entrega da documentacao")
+
+    # possui_representante_legal = models.BooleanField(default=False, verbose_name="Possui representante legal")
 
     status = models.ForeignKey(Status_Geral, null=True, blank=True, on_delete=models.PROTECT, verbose_name="Status do participante")
 

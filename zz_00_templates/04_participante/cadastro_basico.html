@@ -14,7 +14,8 @@
 
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <form action="">
+        <form name="dados_participante" action="" method="POST">
+            {% csrf_token %}
             <div class="card">
                 <div class="header">
                     <h2>
@@ -24,6 +25,20 @@
                 </div>
                 <div class="body">
                     <div class="row clearfix">
+
+                        <div class="col-sm-8">
+{#                            <input type="checkbox" id="basic_checkbox_1" checked="">#}
+{#                            <label for="basic_checkbox_1">Default</label>#}
+{#                            <input type="checkbox" id="basic_checkbox_2" class="filled-in" checked="">#}
+{#                            <label for="basic_checkbox_2">Filled In</label>#}
+{#                            <input type="checkbox" id="basic_checkbox_3" checked="" disabled="">#}
+{#                            <label for="basic_checkbox_3">Default - Disabled</label>#}
+{#                            <input type="checkbox" id="basic_checkbox_4" class="filled-in" checked="" disabled="">#}
+{#                            <label for="basic_checkbox_4">Filled In - Disabled</label>#}
+                            {{ form_participante.verificacao_nis }}
+                        </div>
+
+
                         <div class="col-sm-8">
                             <div class="form-group">
                                 <div class="form-line">
@@ -426,6 +441,7 @@
     <!-- Autosize Plugin Js -->
     <script src="{% static "material/plugins/autosize/autosize.js" %}"></script>
     <!-- Moment Plugin Js -->
+    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <script src="{% static "material/plugins/momentjs/moment.js" %}"></script>
     <!-- Bootstrap Material Datetime Picker Plugin Js -->
     <script src="{% static "material/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" %}"></script>
@@ -436,14 +452,37 @@
     <script>
         $(document).ready(function() {
             $('#id_dt_nascimento').bootstrapMaterialDatePicker({
+                lang: 'pt-br',
                 time: false,
                 clearButton: true,
                 format: 'DD/MM/YYYY',
                 cancelText: 'Descartar',
                 clearText: 'Limpar',
-                lang: 'pt-br'
+
             });
+
+            $('#id_dt_entrada').bootstrapMaterialDatePicker({
+                lang: 'pt-br',
+                time: false,
+                clearButton: true,
+                format: 'DD/MM/YYYY',
+                cancelText: 'Descartar',
+                clearText: 'Limpar',
+
+            });
+
+            $('#id_dt_saida').bootstrapMaterialDatePicker({
+                lang: 'pt-br',
+                time: false,
+                clearButton: true,
+                format: 'DD/MM/YYYY',
+                cancelText: 'Descartar',
+                clearText: 'Limpar',
+
+            });
+
         });
+
     </script>
 
 {% endblock %}

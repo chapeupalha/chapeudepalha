@@ -5,6 +5,7 @@ from core.models import Status_Geral, Municipio
 from participante.models import Participante, EstadoCivil, TipoDocumentoEmpregador, GrauEscolaridade, TurnoEscolar, Deficiencia, Raca
 
 from participante.forms import cadastro_participante, cadastro_dados_participante
+import datetime
 
 
 def cadastro(request):
@@ -43,6 +44,19 @@ def cadastro_basico(request, id_participante):
 
     form_participante = cadastro_dados_participante(request.POST or None, instance=beneficiario)
 
+    if request.method == 'POST':
+        if form_participante.is_valid():
+            status_cadastro = Status_Geral.objects.get(item='CADASTRO_USUARIO_DADOS', chave='CADASTRO_BENEFICIARIO')
+
+            form_obj = Participante.objects.get(id=id_participante)
+            form_obj = form_participante.save(commit=False)
+            form_obj.status = status_cadastro
+            form_obj.dt_alteracao = datetime.datetime.now()
+            form_obj.usuario_updated = request.user
+            form_obj.verificacao_dados_participante = True
+
+            form_obj.save()
+
     return render(request, '04_participante/cadastro_basico.html', locals())
 
 
@@ -66,6 +80,5 @@ def consultar_beneficiario(request):
 
 
 def consultar_dados_beneficiario(request, id_participante):
-
 
     return render(request, '04_participante/consultar_dados_beneficiario.html', locals())
