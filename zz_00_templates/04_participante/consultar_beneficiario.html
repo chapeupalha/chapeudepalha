@@ -49,12 +49,18 @@
                             {% for beneficiario in all_participantes %}
                             <tr>
                                 <td>
-                                    <a href="/participante/consulta/{{ beneficiario.id }}/">
+                                    <a href="/participante/cadastro/{{ beneficiario.id }}/">
                                         {{ beneficiario.nome_completo }}
                                     </a>
                                 </td>
                                 <td>{{ beneficiario.cpf }}</td>
-                                <td>{{ beneficiario.municipio }}</td>
+                                <td>
+                                    {% if beneficiario.municipio_naturalidade %}
+                                        {{ beneficiario.municipio_naturalidade }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>

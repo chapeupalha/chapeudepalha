@@ -3,6 +3,7 @@ from random import randint
 import os
 import datetime
 
+from .utils import update_filename
 from django.contrib.auth.models import User
 from core.models import Regiao, Estado, Municipio, Status_Geral
 from core.choices import CHOICES_SEXO, CHOICES_UF, CHOICES_SIM_NAO
@@ -51,6 +52,15 @@ class Deficiencia(models.Model):
 class Raca(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=500, blank=True, verbose_name="Nome da raça do participante")
+
+    def __str__(self):
+        return self.nome
+
+
+class TipoCopiaDocumento(models.Model):
+    id = models.AutoField(primary_key=True)
+    nome = models.CharField(max_length=500, blank=True, verbose_name="Tipo da cópia do documento")
+    nome_bd = models.CharField(max_length=500, blank=True, verbose_name="Nome do documento para utilizar no sistema")
 
     def __str__(self):
         return self.nome
@@ -126,9 +136,23 @@ class Participante(models.Model):
     verificacao_representante_legal = models.BooleanField(default=False, verbose_name="Alguma pendência nos dados do representante legal")
     verificacao_documentacao = models.BooleanField(default=False, verbose_name="Alguma pendência na entrega da documentacao")
 
-    # possui_representante_legal = models.BooleanField(default=False, verbose_name="Possui representante legal")
+    possui_representante_legal = models.BooleanField(default=True, choices=CHOICES_SIM_NAO, verbose_name="Possui representante legal")
+    representante_legal_nis_pis = models.CharField(max_length=50, null=True, blank=True, verbose_name="NIS/PIS do representante legal")
+    representante_legal_nome = models.CharField(max_length=150, null=True, blank=True, verbose_name="Nome do representante legal")
+    representante_legal_cpf = models.CharField(max_length=20, null=True, blank=True, verbose_name="CPF do representante legal")
+    representante_legal_dt_nascimento = models.DateTimeField(null=True, blank=True, verbose_name="Data de nascimento do representante legal")
 
     status = models.ForeignKey(Status_Geral, null=True, blank=True, on_delete=models.PROTECT, verbose_name="Status do participante")
 
     def __str__(self):
         return self.nome_completo
+
+
+class DocumentosParticipante(models.Model):
+    documento = models.FileField(max_length=1000, upload_to=update_filename, null=True, blank=True, verbose_name=u"BUSCAR ARQUIVO NO COMPUTADOR")
+    participante = models.ForeignKey(Participante, null=True, blank=True, on_delete=models.CASCADE)
+    tipo_documento = models.ForeignKey(TipoCopiaDocumento, null=True, blank=True, on_delete=models.CASCADE, verbose_name="Tipo do documento")
+    dt_cadastro = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.desc_documento

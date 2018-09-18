@@ -27,19 +27,6 @@
                     <div class="row clearfix">
 
                         <div class="col-sm-8">
-{#                            <input type="checkbox" id="basic_checkbox_1" checked="">#}
-{#                            <label for="basic_checkbox_1">Default</label>#}
-{#                            <input type="checkbox" id="basic_checkbox_2" class="filled-in" checked="">#}
-{#                            <label for="basic_checkbox_2">Filled In</label>#}
-{#                            <input type="checkbox" id="basic_checkbox_3" checked="" disabled="">#}
-{#                            <label for="basic_checkbox_3">Default - Disabled</label>#}
-{#                            <input type="checkbox" id="basic_checkbox_4" class="filled-in" checked="" disabled="">#}
-{#                            <label for="basic_checkbox_4">Filled In - Disabled</label>#}
-                            {{ form_participante.verificacao_nis }}
-                        </div>
-
-
-                        <div class="col-sm-8">
                             <div class="form-group">
                                 <div class="form-line">
                                     {{ form_participante.nome_completo }}
@@ -219,7 +206,16 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
+            </div>
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        INFORMAÇÕES COMPLEMENTARES
+                        <small>Informações complementares do participante</small>
+                    </h2>
+                </div>
+                <div class="body">
                     <h2 class="card-inside-title"><strong>Quantidade de filhos por faixa etária</strong></h2>
 
                     <div class="row clearfix">
@@ -334,7 +330,6 @@
                 </div>
             </div>
 
-
             <div class="card">
                 <div class="header">
                     <h2>
@@ -429,7 +424,9 @@
 
             <div>
                 <button type="submit" class="btn btn-success m-t-5 waves-effect">SALVAR</button>
-                <button type="button" class="btn btn-danger m-t-5 waves-effect">CANCELAR</button>
+                <a href="/participante" >
+                    <button type="button" class="btn btn-danger m-t-5 waves-effect">VOLTAR</button>
+                </a>
             </div>
         </form>
     </div>

@@ -2,7 +2,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from participante.models import Participante
+from participante.models import Participante, DocumentosParticipante
 from core.choices import CHOICES_SEXO, CHOICES_UF
 
 class cadastro_participante(ModelForm):
@@ -65,12 +65,12 @@ class cadastro_dados_participante(ModelForm):
             'renda_mensal' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Renda Mensal', 'required': True}),
             'qtd_pessoas_casa' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Quantas pessoas que moram na casa', 'required': True}),
             'qtd_pessoas_contribuem_renda' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Quantas pessoas que contribuem com a renda mensal', 'required': True}),
-            'verificacao_nis' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'NIS'}),
-            'verificacao_contrato_trabalho' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'Contrato de trabalho'}),
-            'verificacao_ctps' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'CTPS'}),
-            'verificacao_cpf' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'CPF'}),
-            'verificacao_rg' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'RG'}),
-            'verificacao_endereco' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'Endereço'}),
+            # 'verificacao_nis' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'NIS'}),
+            # 'verificacao_contrato_trabalho' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'Contrato de trabalho'}),
+            # 'verificacao_ctps' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'CTPS'}),
+            # 'verificacao_cpf' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'CPF'}),
+            # 'verificacao_rg' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'RG'}),
+            # 'verificacao_endereco' : forms.CheckboxInput(attrs={'class': 'form-control', 'placeholder': 'Endereço'}),
 
             'estado_civil': forms.Select(attrs={'type': 'select', 'class': 'form-control', 'placeholder': 'Estado civil', 'required': True}),
             'grau_escolaridade': forms.Select(attrs={'type': 'select', 'class': 'form-control', 'placeholder': 'Grau de escolaridade', 'required': True}),
@@ -133,4 +133,46 @@ class cadastro_dados_participante(ModelForm):
             'raca',
             'tipo_documento_empregador',
             'turno_atividade_escolar',
+        )
+
+
+class cadastro_dados_representante_legal(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(cadastro_dados_representante_legal, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Participante
+
+        widgets = {
+            'representante_legal_nis_pis' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'NIS/PIS do representante legal', 'required': True}),
+            'representante_legal_cpf': forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'CPF do representante legal', 'required': True}),
+            'representante_legal_nome': forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Nome completo do representante legal', 'required': True}),
+            'representante_legal_dt_nascimento' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Data de nascimento', 'required': True}),
+
+        }
+
+        fields = (
+            'representante_legal_nis_pis',
+            'representante_legal_cpf',
+            'representante_legal_nome',
+            'representante_legal_dt_nascimento',
+        )
+
+
+class cadastro_copia_documentos(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(cadastro_copia_documentos, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = DocumentosParticipante
+
+        widgets = {
+            'tipo_documento' : forms.Select(attrs={'type': 'select', 'class': 'form-control', 'placeholder': 'Tipo de Documento', 'required': True}),
+            'documento': forms.FileInput(attrs={'required': True}),
+
+        }
+
+        fields = (
+            'tipo_documento',
+            'documento',
         )

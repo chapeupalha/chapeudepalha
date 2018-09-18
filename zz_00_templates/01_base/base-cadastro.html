@@ -3,19 +3,34 @@
 
 {% block content %}
 
+<style>
+.icon-ok {
+    color: #0ED800;
+}
+
+.icon-pendente {
+    color: #D8C300;
+}
+</style>
+
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
-            <div class="header"><h2>CADASTRO COMPLETO</h2></div>
+            <div class="header">
+                <h2>CADASTRO COMPLETO DO PARTICIPANTE</h2>
+                {% if cadastro_completo %}
+                    <button type="button" data-color="green" class="btn bg-green waves-effect" style="float: right; margin-top: -15px">SUBMETER CADASTRO COMPLETO</button>
+                {% endif %}
+            </div>
             <div class="body">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="{% if tab_active == 'participante' %}active{% endif %}">
                         <a href="/participante/cadastro/{{ id_participante }}/">
                             {% if beneficiario.verificacao_dados_participante %}
-                                <i class="material-icons">check_circle</i>
+                                <i class="material-icons icon-ok">check_circle</i>
                             {% else %}
-                                <i class="material-icons">report</i>
+                                <i class="material-icons icon-pendente">report</i>
                             {% endif %}
                             PARTICIPANTE
                         </a>
@@ -23,9 +38,9 @@
                     <li role="presentation" class="{% if tab_active == 'representante' %}active{% endif %}">
                         <a href="/participante/cadastro/{{ id_participante }}/representante">
                             {% if beneficiario.verificacao_representante_legal %}
-                                <i class="material-icons">check_circle</i>
+                                <i class="material-icons icon-ok">check_circle</i>
                             {% else %}
-                                <i class="material-icons">report</i>
+                                <i class="material-icons icon-pendente">report</i>
                             {% endif %}
                             REPRESENTANTE LEGAL
                         </a>
@@ -33,9 +48,9 @@
                     <li role="presentation" class="{% if tab_active == 'documento' %}active{% endif %}">
                         <a href="/participante/cadastro/{{ id_participante }}/documentos">
                             {% if beneficiario.verificacao_documentacao %}
-                                <i class="material-icons">check_circle</i>
+                                <i class="material-icons icon-ok">check_circle</i>
                             {% else %}
-                                <i class="material-icons">report</i>
+                                <i class="material-icons icon-pendente">report</i>
                             {% endif %}
                             DOCUMENTOS
                         </a>
@@ -48,6 +63,27 @@
                         {% block content_participante %}{% endblock %}
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade in" id="mdModal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-col-green">
+            <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
             </div>
         </div>
     </div>

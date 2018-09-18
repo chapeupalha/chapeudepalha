@@ -1,8 +1,145 @@
 {% extends "01_base/base-cadastro.html" %}
 {% load static %}
 
+{% block content_css %}
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static "material/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" %}" rel="stylesheet" />
+    <!-- Wait Me Css -->
+    <link href="{% static "material/plugins/waitme/waitMe.css" %}" rel="stylesheet" />
+    <!-- Bootstrap Select Css -->
+    <link href="{% static "material/plugins/bootstrap-select/css/bootstrap-select.css" %}" rel="stylesheet" />
+{% endblock %}
+
 {% block content_participante %}
 
-    <div>dados documentos</div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <form name="" action="" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        DOCUMENTOS DO PARTICIPANTE
+                        <small>Cópia dos documentos do participante</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <div class="demo-checkbox">
+                                        {% if nenhum_doc %}
+                                            <div class="alert bg-green">
+                                                Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id
+                                            </div>
+                                        {% endif %}
+                                        {% if beneficiario.verificacao_nis %}
+                                            <input type="checkbox" id="nis_pis" checked="" >
+                                        {% elif not beneficiario.verificacao_nis %}
+                                            <input type="checkbox" id="nis_pis" >
+                                        {% endif %}
+                                        <label for="nops">Cópia do NIS / PIS</label>
+
+                                        {% if beneficiario.verificacao_contrato_trabalho %}
+                                            <input type="checkbox" id="contrato" checked="" >
+                                        {% elif not beneficiario.verificacao_contrato_trabalho %}
+                                            <input type="checkbox" id="contrato" >
+                                        {% endif %}
+                                        <label for="nops">Cópia do Contrato de trabalho</label>
+
+                                        {% if beneficiario.verificacao_ctps %}
+                                            <input type="checkbox" id="ctps" checked=""  >
+                                        {% elif not beneficiario.verificacao_ctps %}
+                                            <input type="checkbox" id="ctps" >
+                                        {% endif %}
+                                        <label for="nops">Cópia da CTPS</label>
+
+                                        {% if beneficiario.verificacao_cpf %}
+                                            <input type="checkbox" id="cpf" checked="" >
+                                        {% elif not beneficiario.verificacao_cpf %}
+                                            <input type="checkbox" id="cpf" >
+                                        {% endif %}
+                                            <label for="nops">Cópia do CPF</label>
+
+                                        {% if beneficiario.verificacao_rg %}
+                                            <input type="checkbox" id="rg" checked="" >
+                                        {% elif not beneficiario.verificacao_rg %}
+                                            <input type="checkbox" id="rg" >
+                                        {% endif %}
+                                            <label for="nops">Cópia do RG</label>
+
+                                        {% if beneficiario.verificacao_endereco %}
+                                            <input type="checkbox" id="endereco" checked="">
+                                        {% elif not beneficiario.verificacao_endereco %}
+                                            <input type="checkbox" id="endereco" >
+                                        {% endif %}
+                                        <label for="nops">Cópia do Endereço</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <h2 class="card-inside-title">Tipo de documento</h2>
+                                <div class="form-line">
+                                    {{ form_documentos.tipo_documento }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <div class="form-line" style="margin-top: 30px">
+                                    {{ form_documentos.documento }}
+                                </div>
+                                <button type="submit" class="btn btn-success m-t-5 waves-effect" style="float: right; margin-top: -30px;">ENVIAR</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+{#            <div>#}
+{#                <button type="submit" class="btn btn-success m-t-5 waves-effect">ENVIAR</button>#}
+{#                <button type="button" class="btn btn-danger m-t-5 waves-effect">CANCELAR</button>#}
+{#            </div>#}
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Autosize Plugin Js -->
+    <script src="{% static "material/plugins/autosize/autosize.js" %}"></script>
+    <!-- Moment Plugin Js -->
+    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script src="{% static "material/plugins/momentjs/moment.js" %}"></script>
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" %}"></script>
+    <!-- Custom Js -->
+    <script src="{% static "material/js/admin.js" %}"></script>
+    <script src="{% static "material/js/pages/forms/basic-form-elements.js" %}"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.form-line').on('change', '#id_documento', function() {
+            	if($(this)[0].files[0].type != "application/pdf") {
+            		$(this)[0].value = ''
+            		alert('O arquivo de cada Recibo deve ser em .PDF')
+            	}
+            });
+
+        });
+
+    </script>
 
 {% endblock %}
