@@ -5,6 +5,7 @@ from django.forms import ModelForm
 from participante.models import Participante, DocumentosParticipante
 from core.choices import CHOICES_SEXO, CHOICES_UF
 
+
 class cadastro_participante(ModelForm):
     def __init__(self, *args, **kwargs):
         super(cadastro_participante, self).__init__(*args, **kwargs)
@@ -14,7 +15,7 @@ class cadastro_participante(ModelForm):
 
         widgets = {
             'nome_completo' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Informe o nome completo do beneficiário', 'required': True}),
-            'cpf' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Informe o CPF do beneficiário', 'required': True}),
+            'cpf' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control cpf_input', 'placeholder': 'Informe o CPF do beneficiário', 'required': True}),
         }
 
         fields = ('cpf', 'nome_completo', 'status', 'usuario',)
@@ -29,14 +30,14 @@ class cadastro_dados_participante(ModelForm):
 
         widgets = {
             'nis_pis' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'NIS/PIS do beneficiário', 'required': True}),
-            'cpf': forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'CPF do beneficiário', 'required': True}),
+            'cpf': forms.TextInput(attrs={'type': 'text', 'class': 'form-control cpf_input', 'placeholder': 'CPF do beneficiário', 'required': True}),
             'rg' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'RG do beneficiário', 'required': True}),
             'rg_orgao_exp' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Órgão expedidor do RG', 'required': True}),
             'rg_uf' : forms.Select(attrs={'type': 'select', 'class': 'form-control', 'placeholder': 'UF do órgão expedidor', 'required': True}),
             'nome_completo': forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Nome completo do beneficiário', 'required': True}),
             'nome_mae' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Nome da Mãe do beneficiário', 'required': True}),
             'nome_pai': forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Nome de Pai do beneficiário'}),
-            'dt_nascimento' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Data de nascimento', 'required': True}),
+            'dt_nascimento' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control date_input', 'placeholder': 'Data de nascimento', 'required': True}),
             'sexo' : forms.Select(attrs={'type': 'select', 'required': True, 'class': 'form-control'}, choices=CHOICES_SEXO),
             'titulo_eleitor' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Título de eleitor', 'required': True}),
             'ctps' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Número da carteira de trabalho(ctps)'}),
@@ -45,8 +46,8 @@ class cadastro_dados_participante(ModelForm):
             'cnpj_ultimo_empregador' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'CNPJ / CEI / CPF do último empregador'}),
             'nome_empresa' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Nome da empresa (Razão social)'}),
             'funcao' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Função'}),
-            'dt_entrada' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Data de entrada'}),
-            'dt_saida' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Data de saída'}),
+            'dt_entrada' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control date_input', 'placeholder': 'Data de entrada'}),
+            'dt_saida' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control date_input', 'placeholder': 'Data de saída'}),
             'qtd_filhos_0_m_6_m' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'De 0 a 6 meses' }),
             'qtd_filhos_7_m_3_a' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'De 7 meses a 3 anos'}),
             'qtd_filhos_4_a_7_a' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'De 4 a 7 anos'}),
@@ -59,9 +60,9 @@ class cadastro_dados_participante(ModelForm):
             'logradouro' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Logradouro', 'required': True}),
             'numero' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Número'}),
             'complemento' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Complemento'}),
-            'cep' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'CEP', 'required': True}),
-            'fone' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Telefone'}),
-            'celular' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Celular'}),
+            'cep' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control cep_input', 'placeholder': 'CEP', 'required': True}),
+            'fone' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control fone_input', 'placeholder': 'Telefone'}),
+            'celular' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control fone_input', 'placeholder': 'Celular'}),
             'renda_mensal' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Renda Mensal', 'required': True}),
             'qtd_pessoas_casa' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Quantas pessoas que moram na casa', 'required': True}),
             'qtd_pessoas_contribuem_renda' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Quantas pessoas que contribuem com a renda mensal', 'required': True}),
@@ -145,9 +146,9 @@ class cadastro_dados_representante_legal(ModelForm):
 
         widgets = {
             'representante_legal_nis_pis' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'NIS/PIS do representante legal', 'required': True}),
-            'representante_legal_cpf': forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'CPF do representante legal', 'required': True}),
+            'representante_legal_cpf': forms.TextInput(attrs={'type': 'text', 'class': 'form-control cpf_input', 'placeholder': 'CPF do representante legal', 'required': True}),
             'representante_legal_nome': forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Nome completo do representante legal', 'required': True}),
-            'representante_legal_dt_nascimento' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control', 'placeholder': 'Data de nascimento', 'required': True}),
+            'representante_legal_dt_nascimento' : forms.TextInput(attrs={'type': 'text', 'class': 'form-control date_input', 'placeholder': 'Data de nascimento', 'required': True}),
 
         }
 

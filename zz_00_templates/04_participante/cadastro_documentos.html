@@ -8,6 +8,8 @@
     <link href="{% static "material/plugins/waitme/waitMe.css" %}" rel="stylesheet" />
     <!-- Bootstrap Select Css -->
     <link href="{% static "material/plugins/bootstrap-select/css/bootstrap-select.css" %}" rel="stylesheet" />
+    <!-- Sweetalert Css -->
+    <link href="{% static "material/plugins/sweetalert/sweetalert.css" %}" rel="stylesheet" />
 {% endblock %}
 
 {% block content_participante %}
@@ -117,29 +119,22 @@
 {% endblock %}
 
 {% block content_js %}
+    <!-- Input Mask Plugin Js -->
+    <script src="{% static "material/plugins/jquery-inputmask/jquery.inputmask.bundle.js" %}"></script>
     <!-- Autosize Plugin Js -->
     <script src="{% static "material/plugins/autosize/autosize.js" %}"></script>
     <!-- Moment Plugin Js -->
-    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <script src="{% static "material/plugins/momentjs/moment.js" %}"></script>
     <!-- Bootstrap Material Datetime Picker Plugin Js -->
     <script src="{% static "material/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" %}"></script>
     <!-- Custom Js -->
     <script src="{% static "material/js/admin.js" %}"></script>
     <script src="{% static "material/js/pages/forms/basic-form-elements.js" %}"></script>
+    <!-- SweetAlert Plugin Js -->
+    <script src="{% static "material/plugins/sweetalert/sweetalert.min.js" %}"></script>
 
-    <script>
-        $(document).ready(function() {
-
-            $('.form-line').on('change', '#id_documento', function() {
-            	if($(this)[0].files[0].type != "application/pdf") {
-            		$(this)[0].value = ''
-            		alert('O arquivo de cada Recibo deve ser em .PDF')
-            	}
-            });
-
-        });
-
-    </script>
+    <!-- Custom Js -->
+{#    <script src="{% static "material/js/pages/ui/dialogs.js" %}"></script>#}
+    <script src="{% static "project/04_participante/cadastro.js" %}"></script>
 
 {% endblock %}

@@ -194,12 +194,22 @@ def participante_cardsave(request, id_participante):
         if request.is_ajax() and request.POST:
             id_beneficiario = request.POST.get('id_particip')
             id_card = request.POST.get('codcard')
-            Participante.objects.filter(id=int(id_beneficiario)).update(card_id=id_card)
+
+            beneficiario = Participante.objects.get(id=id_beneficiario)
+
+            new_status = Status_Geral.objects.get(item='CADASTRO_COMPLETO_USUARIO', chave='CADASTRO_BENEFICIARIO')
+
+            beneficiario.card_id = id_card
+            beneficiario.status = new_status
+            beneficiario.dt_alteracao = datetime.datetime.now()
+            beneficiario.usuario_updated = request.user
+
+            beneficiario.save()
+
             data = {'message': 'Cartao cadastrado'}
             return HttpResponse(json.dumps(data), content_type='application/json')
 
     return render(request, '04_participante/cardsave.html', locals())
-
 
 
 def consultar_beneficiario(request):
@@ -213,7 +223,5 @@ def consultar_beneficiario(request):
 
 
 def consultar_dados_beneficiario(request, id_participante):
-
-
 
     return render(request, '04_participante/consultar_dados_beneficiario.html', locals())

@@ -33,14 +33,10 @@ class Migration(migrations.Migration):
             name='possui_representante_legal',
             field=models.BooleanField(choices=[(1, 'Sim'), (0, 'Não')], default=True, verbose_name='Possui representante legal'),
         ),
-        migrations.AddField(
-            model_name='documentosparticipante',
-            name='participante',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='participante.Participante'),
-        ),
-        migrations.AddField(
-            model_name='documentosparticipante',
-            name='tipo_documento',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='participante.TipoCopiaDocumento', verbose_name='Tipo do documento'),
+        migrations.AlterField(
+            model_name='participante',
+            name='possui_representante_legal',
+            field=models.BooleanField(choices=[(1, 'Sim'), (0, 'Não')], default=True,
+                                      verbose_name='Possui representante legal'),
         ),
     ]
