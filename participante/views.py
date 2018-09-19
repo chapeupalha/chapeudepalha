@@ -1,3 +1,4 @@
+import simplejson
 from django.shortcuts import render, redirect
 import json
 from django.http import Http404, HttpResponse
@@ -241,5 +242,18 @@ def consultar_dados_beneficiario_cartao(request):
         cartao_id = request.POST.get('cartao_id')
         beneficiario = Participante.objects.get(card_id=cartao_id)
 
-    # return render(request, '04_participante/cadastro_basico.html', locals())
     return redirect('/participante/cadastro/%s' % (beneficiario.id))
+
+
+def ajax_chart_sexo(request):
+
+    qsSexoMasc = len(Participante.objects.filter(sexo='M'))
+    qsSexoFem = len(Participante.objects.filter(sexo='F'))
+    qsSexoOutro = len(Participante.objects.filter(sexo='ND'))
+
+    context = {
+        'nomes': json.dumps(['Masculino', 'Feminino', 'Outros']),
+        'qtd': json.dumps([qsSexoMasc, qsSexoFem, qsSexoOutro]),
+    }
+
+    return HttpResponse(simplejson.dumps(context), mimetype='application/json')
