@@ -1,0 +1,144 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static "material/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <div class="row clearfix">
+                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                        <h2>Ocorrências do projeto</h2>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <a href="/atividade/ocorrencia/nova">
+                            <button type="button" class="btn btn-warning btn-xs btn-block waves-effect">
+                                <i class="material-icons">add_circle</i>
+                                <span>Cadastrar Ocorrência</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row clearfix">
+                            <form method="POST">
+                                {% csrf_token %}
+
+                                <div class="col-sm-5">
+                                    <h2 class="card-inside-title"><strong>Data de início da pesquisa:</strong></h2>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="datepicker form-control" placeholder="Data inicio" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <h2 class="card-inside-title"><strong>Data final da pesquisa:</strong></h2>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="datepicker form-control" placeholder="Data Fim" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 text-center">
+                                    <button type="submit" class="btn bg-purple btn-circle-lg waves-effect waves-circle waves-float">
+                                        <i class="material-icons">search</i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead>
+                            <tr>
+                                <th>Nº Protocolo</th>
+                                <th>Data ocorrência</th>
+                                <th>Solicitante</th>
+                                <th>Atendente</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nº Protocolo</th>
+                                <th>Data ocorrência</th>
+                                <th>Solicitante</th>
+                                <th>Atendente</th>
+                                <th>Status</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for ocorr in all_ocorrencia %}
+                            <tr>
+                                <td>
+                                    <a href="/atividade/ocorrencia/{{ ocorr.id }}/consulta">{{ ocorr.num_protocolo }}</a>
+                                </td>
+                                <td>{{ ocorr.dt_solicitacao|date:"Y-m-d" }}</td>
+                                <td>{{ ocorr.nome_solicitante }}</td>
+                                <td>{{ ocorr.user_atendente }}</td>
+                                <td class="text-center">
+                                    {% if ocorr.status.id == 30010100 %}
+                                        <code>Nova</code>
+                                    {% elif ocorr.status.id == 30020200 %}
+                                        <code>Andamento</code>
+                                    {% elif ocorr.status.id == 30030300 %}
+                                        <code>Finalizado</code>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Exportable Table -->
+
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Moment Plugin Js -->
+    <script src="{% static "material/plugins/momentjs/moment.js" %}"></script>
+    <script src="{% static "material/plugins/momentjs/pt-br.js" %}"></script>
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" %}"></script>
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static "material/plugins/jquery-datatable/jquery.dataTables.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.flash.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/jszip.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/pdfmake.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/vfs_fonts.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.html5.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.print.min.js" %}"></script>
+    <!-- Custom Js -->
+    <script src="{% static "material/js/admin.js" %}"></script>
+    <script src="{% static "material/js/admin.js" %}"></script>
+
+    <script src="{% static "project/06_ocorrencia/home.js" %}"></script>
+
+{% endblock %}

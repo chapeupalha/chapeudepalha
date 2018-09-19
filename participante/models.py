@@ -105,7 +105,7 @@ class Participante(models.Model):
     qtd_filhos_13_a_17_a = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de filhos entre 13 a 17 anos")
     qtd_filhos_18_a_29_a = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de filhos entre 18 a 29 anos")
     gestante_familia = models.IntegerField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="Existe gestante na familia")
-    alfabetizado = models.IntegerField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="participante é alfabetizado")
+    alfabetizado = models.IntegerField(null=True, blank=True, choices=CHOICES_SIM_NAO, default=1, verbose_name="participante é alfabetizado")
     estudando = models.IntegerField(null=True, blank=True, choices=CHOICES_SIM_NAO, verbose_name="Está estudando")
     turno_atividade_escolar = models.ForeignKey(TurnoEscolar, on_delete=models.PROTECT, null=True, blank=True, verbose_name="Turno em que esta estudando atualmente")
     grau_escolaridade = models.ForeignKey(GrauEscolaridade, on_delete=models.PROTECT, null=True, blank=True, verbose_name="Grau de escolaridade do participante")
@@ -143,6 +143,7 @@ class Participante(models.Model):
     representante_legal_dt_nascimento = models.DateTimeField(null=True, blank=True, verbose_name="Data de nascimento do representante legal")
 
     status = models.ForeignKey(Status_Geral, null=True, blank=True, on_delete=models.PROTECT, verbose_name="Status do participante")
+    card_id = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.nome_completo

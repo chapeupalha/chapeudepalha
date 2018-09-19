@@ -108,7 +108,6 @@ DATABASES = {
 }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -157,9 +156,9 @@ STATICFILES_DIRS = [
 ##################################
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#
-# AWS_ACCESS_KEY_ID = "AKIAIKUMLH4S7BIJM3BA"
-# AWS_SECRET_ACCESS_KEY = "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"
+
+# AWS_ACCESS_KEY_ID = "AKIAJLCZ2NUTYT55XTOA"
+# AWS_SECRET_ACCESS_KEY = "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"
 # AWS_FILE_EXPIRE = 200
 # AWS_PRELOAD_METADATA = True
 # AWS_QUERYSTRING_AUTH = True

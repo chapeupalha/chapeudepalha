@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+import json
+from django.http import Http404, HttpResponse
 from django.contrib.auth.models import User
 
 from core.models import Status_Geral, Municipio
@@ -186,13 +188,32 @@ def cadastro_documentos(request, id_participante):
     return render(request, '04_participante/cadastro_documentos.html', locals())
 
 
+def participante_cardsave(request, id_participante):
+
+    if request.method == 'POST':
+        if request.is_ajax() and request.POST:
+            id_beneficiario = request.POST.get('id_particip')
+            id_card = request.POST.get('codcard')
+            Participante.objects.filter(id=int(id_beneficiario)).update(card_id=id_card)
+            data = {'message': 'Cartao cadastrado'}
+            return HttpResponse(json.dumps(data), content_type='application/json')
+
+    return render(request, '04_participante/cardsave.html', locals())
+
+
+
 def consultar_beneficiario(request):
 
     all_participantes = Participante.objects.all()
+
+    if request.method == 'POST':
+        print('')
 
     return render(request, '04_participante/consultar_beneficiario.html', locals())
 
 
 def consultar_dados_beneficiario(request, id_participante):
+
+
 
     return render(request, '04_participante/consultar_dados_beneficiario.html', locals())
