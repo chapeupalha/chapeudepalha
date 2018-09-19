@@ -256,4 +256,4 @@ def ajax_chart_sexo(request):
         'qtd': json.dumps([qsSexoMasc, qsSexoFem, qsSexoOutro]),
     }
 
-    return HttpResponse(simplejson.dumps(context), mimetype='application/json')
+    return HttpResponse(simplejson.dumps(context), content_type='application/json')
