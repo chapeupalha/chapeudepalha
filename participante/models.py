@@ -106,5 +106,5 @@ class Participante(models.Model):
 
     status = models.ForeignKey(Status_Geral, null=True, blank=True, on_delete=models.PROTECT, verbose_name="Status do participante")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nome_completo

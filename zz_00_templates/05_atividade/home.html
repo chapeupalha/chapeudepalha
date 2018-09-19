@@ -24,7 +24,34 @@
             <div class="body">
                 <div class="row clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        Conteudo renderizado
+                        <ul class="list-group">
+                        {% for status_ativs in status_atividade %}
+                            {% if status_ativs.id == 20010100 %}
+                                <a href="/atividade/andamento" class="waves-black">
+                                    <li class="list-group-item">
+                                        {{ status_ativs.texto }}
+                                        <span class="badge bg-cyan" style="width: 150px;">{{ atividade_andamento }} Em andamento </span>
+                                    </li>
+                                </a>
+                            {% endif %}
+                            {% if status_ativs.id == 20020100 %}
+                                <a href="/atividade/andamento">
+                                    <li class="list-group-item">
+                                        {{ status_ativs.texto }}
+                                        <span class="badge bg-teal" style="width: 150px;">{{ atividade_encerrada }} Encerrada </span>
+                                    </li>
+                                </a>
+                            {% endif %}
+                            {% if status_ativs.id == 20011111 %}
+                                <a href="/atividade/andamento">
+                                    <li class="list-group-item">
+                                        {{ status_ativs.texto }}
+                                        <span class="badge bg-red" style="width: 150px;">{{ atividade_cancelada }} Cancelada </span>
+                                    </li>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>

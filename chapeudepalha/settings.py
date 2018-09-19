@@ -155,19 +155,19 @@ STATICFILES_DIRS = [
 ##################################
 #   CREDENCIAIS AWS STATICFILE   #
 ##################################
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_ACCESS_KEY_ID = "AKIAJLCZ2NUTYT55XTOA"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_FILE_EXPIRE = 200
-AWS_PRELOAD_METADATA = True
-AWS_QUERYSTRING_AUTH = True
-
-AWS_STORAGE_BUCKET_NAME = 'chapeudepalha-bucket'
-S3DIRECT_REGION = 'us-west-2'
-S3_URL = '//%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = '//%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
-MEDIA_ROOT = MEDIA_URL
-STATIC_URL = S3_URL + 'static/'
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+#
+# AWS_ACCESS_KEY_ID = "AKIAJLCZ2NUTYT55XTOA"
+# AWS_SECRET_ACCESS_KEY = "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"
+# AWS_FILE_EXPIRE = 200
+# AWS_PRELOAD_METADATA = True
+# AWS_QUERYSTRING_AUTH = True
+#
+# AWS_STORAGE_BUCKET_NAME = 'chapeudepalha-bucket'
+# S3DIRECT_REGION = 'us-west-2'
+# S3_URL = '//%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+# MEDIA_URL = '//%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+# MEDIA_ROOT = MEDIA_URL
+# STATIC_URL = S3_URL + 'static/'
+# ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'

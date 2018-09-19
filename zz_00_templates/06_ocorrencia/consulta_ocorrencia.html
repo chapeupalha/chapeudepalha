@@ -1,0 +1,193 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static "material/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" %}" rel="stylesheet" />
+    <!-- Wait Me Css -->
+    <link href="{% static "material/plugins/waitme/waitMe.css" %}" rel="stylesheet" />
+    <!-- Bootstrap Select Css -->
+    <link href="{% static "material/plugins/bootstrap-select/css/bootstrap-select.css" %}" rel="stylesheet" />
+    <!-- Bootstrap Select Css -->
+    <link href="{% static "material/plugins/bootstrap-select/css/bootstrap-select.css" %}" rel="stylesheet" />
+    <!-- noUISlider Css -->
+    <link href="{% static "material/plugins/nouislider/nouislider.min.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<div class="row clearfix">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <a href="/atividade/ocorrencia">
+            <button type="button" class="btn btn-info btn-xs btn-block waves-effect">
+                <i class="material-icons">keyboard_backspace</i>
+                <span>Voltar</span>
+            </button>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <a href="/atividade/ocorrencia/{{ ocorrencia_cadastrada.id }}/solucao">
+            <button type="button" class="btn bg-light-green btn-xs btn-block waves-effect">
+                <i class="material-icons">autorenew</i>
+                <span>Cadastrar solução</span>
+            </button>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <a href="/atividade/ocorrencia/{{ ocorrencia_cadastrada.id }}/finalizar">
+            <button type="button" class="btn bg-green btn-xs btn-block waves-effect">
+                <i class="material-icons">lock_outline</i>
+                <span>Finalizar ocorrência</span>
+            </button>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <a href="/atividade/ocorrencia">
+            <button type="button" class="btn bg-grey btn-xs btn-block waves-effect">
+                <i class="material-icons">lock_open</i>
+                <span>Reabrir ocorrência</span>
+            </button>
+        </a>
+    </div>
+</div><br>
+
+<div class="row clearfix">
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <div class="row clearfix">
+                    <div class="col-md-8 col-sm-12">
+                        <h2>Número do protocolo da ocorrência: <strong>{{ ocorrencia_cadastrada.num_protocolo }}</strong></h2>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <button type="button" class="btn bg-teal btn-block btn-xs waves-effect">
+                            Status: {{ ocorrencia_cadastrada.status }}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="body">
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Nome do(a) solicitante da ocorrência:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ ocorrencia_cadastrada.nome_solicitante }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Telefone do(a) solicitante:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ ocorrencia_cadastrada.tel_solicitante }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">E-mail do(a) solicitante:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ ocorrencia_cadastrada.email_solicitante }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Questionamento da ocorrência:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea rows="8" class="form-control no-resize" disabled>{{ ocorrencia_cadastrada.questionamento }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h2 class="card-inside-title">Beneficiário participante:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ ocorrencia_cadastrada.beneficiario_participante }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h2 class="card-inside-title">Equipe responsável pela ocorrência:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ ocorrencia_cadastrada.equipe_responsavel }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h2 class="card-inside-title">Município da ocorrência:</h2>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ ocorrencia_cadastrada.municipio }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for solucao_obj in solucao_cadastrada %}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    SOLUÇÃO REALIZADA
+                    <small><code>Titulo da solução: </code>{{ solucao_obj.titulo }}</small>
+                </h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-md-12"><strong>Descrição da solução:</strong></div>
+                    <div class="col-md-12">{{ solucao_obj.solucao }}</div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-6"><strong>Equipe responsavel pela solução:</strong></div>
+                    <div class="col-md-6"><strong>Data da solução:</strong></div>
+                    <div class="col-md-6">{{ solucao_obj.equipe_responsavel_solucao }}</div>
+                    <div class="col-md-6">{{ solucao_obj.dt_solucao }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Input Mask Plugin Js -->
+    <script src="{% static "material/plugins/jquery-inputmask/jquery.inputmask.bundle.js" %}"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="{% static "material/plugins/multi-select/js/jquery.multi-select.js" %}"></script>
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="{% static "material/plugins/jquery-spinner/js/jquery.spinner.js" %}"></script>
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js" %}"></script>
+    <!-- Autosize Plugin Js -->
+    <script src="{% static "material/plugins/autosize/autosize.js" %}"></script>
+    <!-- Moment Plugin Js -->
+    <script src="{% static "material/plugins/momentjs/moment.js" %}"></script>
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" %}"></script>
+    <!-- Custom Js -->
+    <script src="{% static "material/js/admin.js" %}"></script>
+    <script src="{% static "material/js/pages/forms/basic-form-elements.js" %}"></script>
+    <!-- noUISlider Plugin Js -->
+    <script src="{% static "material/plugins/nouislider/nouislider.js" %}"></script>
+    <script src="{% static "project/06_ocorrencia/cadastro.js" %}"></script>
+{% endblock %}
