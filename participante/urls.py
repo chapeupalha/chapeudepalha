@@ -1,10 +1,11 @@
 from django.urls import path
 
-from .views import cadastro, novo_cadastro, cadastro_basico, cadastro_representante_legal, cadastro_documentos, \
-    consultar_beneficiario, consultar_dados_beneficiario, cadastro_representante_legal_situacao, participante_cardsave
+from .views import principal, novo_cadastro, cadastro_basico, cadastro_representante_legal, cadastro_documentos, \
+    consultar_beneficiario, consultar_dados_beneficiario, cadastro_representante_legal_situacao, participante_cardsave, \
+    consultar_dados_beneficiario_cartao
 
 urlpatterns = [
-    path('', cadastro, name='cadastro'),
+    path('', principal, name='cadastro'),
     path('novo/', novo_cadastro, name='novo_cadastro'),
     path('cadastro/<int:id_participante>/', cadastro_basico, name='cadastro_basico'),
     path('cadastro/<int:id_participante>/representante', cadastro_representante_legal, name='cadastro_representante_legal'),
@@ -14,6 +15,7 @@ urlpatterns = [
 
     path('consultar/', consultar_beneficiario, name='consultar_beneficiario'),
     path('consulta/<int:id_participante>/', consultar_dados_beneficiario, name='consultar_dados_beneficiario'),
+    path('consulta/cartao', consultar_dados_beneficiario_cartao, name='consultar_dados_beneficiario_cartao'),
 
 ]
 

@@ -4,6 +4,7 @@
 {% block content_css %}
 
 
+
 {% endblock %}
 
 {% block content %}
@@ -16,18 +17,11 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <h2>Consulta de Participante</h2>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <form method="post">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="material-icons">person</i>
-                                </span>
-                                <div class="form-line">
-                                    <input type="text" class="form-control date" placeholder="Username">
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 js-modal-buttons">
+                        <button type="button" class="btn btn-warning btn-xs btn-block waves-effect btn-savecard" data-color="green">
+                            <i class="material-icons">search</i>
+                            <span>Pesquisar beneficiário por código do cartão</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -76,6 +70,35 @@
 <!-- #END# Exportable Table -->
 
 
+<div class="modal fade in" id="mdModal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <form action="/participante/consulta/cartao" method="POST">
+            {% csrf_token %}
+            <div class="modal-content modal-col-red">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center" id="defaultModalLabel" >Pesquisar Participante pelo cartão</h2>
+                </div>
+                <div class="demo-google-material-icon text-center" style="color: #ffffff">
+                    <i class="material-icons" style="font-size: 68px">sim_card</i>
+                    <br>
+                    Passe o cartão para filtrar o beneficiário
+                </div>
+
+                <div class="modal-body text-center">
+                    <div>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" name="cartao_id" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 {% endblock %}
 
@@ -92,20 +115,10 @@
     <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.html5.min.js" %}"></script>
     <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.print.min.js" %}"></script>
 
-    <script>
-    $(function () {
-        $('.js-basic-example').DataTable({
-            responsive: true
-        });
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-notify/bootstrap-notify.js" %}"></script>
 
-        //Exportable table
-        $('.js-exportable').DataTable({
-            dom: 'Bfrtip',
-            responsive: true,
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        });
-    });
-    </script>
+    <!-- Custom Js -->
+    <script src="{% static "project/04_participante/consulta.js" %}"></script>
+
 {% endblock %}

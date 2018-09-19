@@ -13,9 +13,17 @@ import datetime
 from django.shortcuts import redirect
 
 
-def cadastro(request):
+def principal(request):
 
-    return render(request, '04_participante/cadastro.html', locals())
+    total_cadastros = len(Participante.objects.all())
+    cadastro_andamento = len(Participante.objects.filter(status__in=[10010100, 10010200]))
+    cadastro_concluido = len(Participante.objects.filter(status__in=[10010300]))
+
+    pendente_dados_participante = len(Participante.objects.filter(verificacao_dados_participante=False))
+    pendente_representante_legal = len(Participante.objects.filter(verificacao_representante_legal=False))
+    pendente_documentacao = len(Participante.objects.filter(verificacao_documentacao=False))
+
+    return render(request, '04_participante/principal.html', locals())
 
 
 def novo_cadastro(request):
@@ -225,3 +233,13 @@ def consultar_beneficiario(request):
 def consultar_dados_beneficiario(request, id_participante):
 
     return render(request, '04_participante/consultar_dados_beneficiario.html', locals())
+
+
+def consultar_dados_beneficiario_cartao(request):
+
+    if request.method == 'POST':
+        cartao_id = request.POST.get('cartao_id')
+        beneficiario = Participante.objects.get(card_id=cartao_id)
+
+    # return render(request, '04_participante/cadastro_basico.html', locals())
+    return redirect('/participante/cadastro/%s' % (beneficiario.id))
