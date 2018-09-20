@@ -12,6 +12,8 @@ from participante.forms import cadastro_participante, cadastro_dados_participant
     cadastro_copia_documentos
 import datetime
 from django.shortcuts import redirect
+from django.db.models import Count
+from django.core import serializers
 
 
 def principal(request):
@@ -252,8 +254,47 @@ def ajax_chart_sexo(request):
     qsSexoOutro = len(Participante.objects.filter(sexo='ND'))
 
     context = {
-        'nomes': json.dumps(['Masculino', 'Feminino', 'Outros']),
-        'qtd': json.dumps([qsSexoMasc, qsSexoFem, qsSexoOutro]),
+        'sexo': ['Masculino', 'Feminino', 'Outros'],
+        'qtd': [qsSexoMasc, qsSexoFem, qsSexoOutro],
+    }
+
+    return HttpResponse(simplejson.dumps(context), content_type='application/json')
+
+
+def ajax_chart_municipio(request):
+
+    qs = Participante.objects.filter(verificacao_dados_participante=True).values('municipio_participante__nome').annotate(count=Count('municipio_participante')).order_by('-count')[:10]
+
+    municipio = []
+    qtd = []
+    for x in qs:
+        municipio.append(x['municipio_participante__nome'])
+        qtd.append(x['count'])
+
+    context = {
+        'municipio': municipio,
+        'qtd': qtd,
+    }
+
+    return HttpResponse(simplejson.dumps(context), content_type='application/json')
+
+
+def ajax_chart_dt_cadastro(request):
+
+    qs = Participante.objects.filter().values('dt_cadastro').annotate(count=Count('dt_cadastro')).order_by('dt_cadastro')[:20]
+
+    dt_cadastro = []
+    qtd = []
+
+    # date_str = dt_obj.strftime("%Y-%m-%d
+
+    for x in qs:
+        dt_cadastro.append(x['dt_cadastro'].strftime("%d/%m/%Y"))
+        qtd.append(x['count'])
+
+    context = {
+        'dt_cadastro': dt_cadastro,
+        'qtd': qtd,
     }
 
     return HttpResponse(simplejson.dumps(context), content_type='application/json')
