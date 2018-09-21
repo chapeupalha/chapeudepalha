@@ -1,0 +1,208 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- Colorpicker Css -->
+    <link href="{% static "material/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" %}" rel="stylesheet" />
+    <!-- Dropzone Css -->
+    <link href="{% static "material/plugins/dropzone/dropzone.css" %}" rel="stylesheet">
+    <!-- Multi Select Css -->
+    <link href="{% static "material/plugins/multi-select/css/multi-select.css" %}" rel="stylesheet">
+    <!-- Bootstrap Spinner Css -->
+    <link href="{% static "material/plugins/jquery-spinner/css/bootstrap-spinner.css" %}" rel="stylesheet">
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="{% static "material/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" %}" rel="stylesheet">
+    <!-- Bootstrap Select Css -->
+    <link href="{% static "material/plugins/bootstrap-select/css/bootstrap-select.css" %}" rel="stylesheet" />
+    <!-- noUISlider Css -->
+    <link href="{% static "material/plugins/nouislider/nouislider.min.css" %}" rel="stylesheet" />
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static "material/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-4"><h2>VISUALIZAÇÃO DA TURMA</h2></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn bg-blue btn-block btn-sm waves-effect">Encerrar Turma</button>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/capacitacao/turma/{{ id_turma }}/inserir_aluno">
+                            <button type="button" class="btn bg-green btn-block btn-sm waves-effect">
+                                {% if obj_turmas.status.id == 50060100 %}
+                                Alterar Alunos da Turma
+                                {% else %}
+                                Inserir Alunos na Turma
+                                {% endif %}
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <b>Nome/codigo da turma:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">school</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ obj_turmas.nome }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <b>Quantidade mínima de alunos:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">people_outline</i>
+                                </span>
+                                <div class="form-line" style="border: 1px solid #DDDDDD;">
+                                    <input type="text" class="form-control" value="{{ obj_turmas.qtd_aluno_min }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <b>Quantidade máxima de alunos:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">people</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ obj_turmas.qtd_aluno_max }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <b>Turno da aula:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">today</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ obj_turmas.turno }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <b>Dias da semana com aula:</b><br><br>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <input type="checkbox" id="md_checkbox_01" class="filled-in chk-col-green" disabled {% if obj_turmas.dia_seg %}checked="true"{% endif %}" dis>
+                                            <label for="md_checkbox_01">Segunda-Feira</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="checkbox" id="md_checkbox_02" class="filled-in chk-col-green" disabled {% if obj_turmas.dia_ter %}checked="true"{% endif %}" dis>
+                                            <label for="md_checkbox_02">Terça-Feira</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="checkbox" id="md_checkbox_03" class="filled-in chk-col-green" disabled {% if obj_turmas.dia_qua %}checked="true"{% endif %}" dis>
+                                            <label for="md_checkbox_03">Quarta-Feira</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="checkbox" id="md_checkbox_04" class="filled-in chk-col-green" disabled {% if obj_turmas.dia_qui %}checked="true"{% endif %}" dis>
+                                            <label for="md_checkbox_04">Quinta-Feira</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="checkbox" id="md_checkbox_05" class="filled-in chk-col-green" disabled {% if obj_turmas.dia_sex %}checked="true"{% endif %}" dis>
+                                            <label for="md_checkbox_05">Sexta-Feira</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <input type="checkbox" id="md_checkbox_06" class="filled-in chk-col-green" disabled {% if obj_turmas.dia_sab %}checked="true"{% endif %}" dis>
+                                            <label for="md_checkbox_06">Sábado</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="checkbox" id="md_checkbox_07" class="filled-in chk-col-green" disabled {% if obj_turmas.dia_dom %}checked="true"{% endif %}" dis>
+                                            <label for="md_checkbox_07">Domingo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <b>Curso da turma:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">label</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ obj_turmas.curso_turma }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <b>Local do curso:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">label</i>
+                                </span>
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ obj_turmas.local_turma }}" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <b>Observações:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">more_vert</i>
+                                </span>
+                                <div class="form-line" style="border: 1px solid #DDDDDD;">
+                                    <textarea rows="7" class="form-control no-resize" >{{ obj_turmas.observacoes }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="{% static "material/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" %}"></script>
+    <!-- Dropzone Plugin Js -->
+    <script src="{% static "material/plugins/dropzone/dropzone.js" %}"></script>
+    <!-- Input Mask Plugin Js -->
+    <script src="{% static "material/plugins/jquery-inputmask/jquery.inputmask.bundle.js" %}"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="{% static "material/plugins/multi-select/js/jquery.multi-select.js" %}"></script>
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="{% static "material/plugins/jquery-spinner/js/jquery.spinner.js" %}"></script>
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js" %}"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <script src="{% static "material/plugins/nouislider/nouislider.js" %}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{% static "material/plugins/momentjs/moment.js" %}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" %}"></script>
+    <script src="{% static "material/plugins/momentjs/pt-br.js" %}"></script>
+    <script src="{% static "project/07_escola/cadastro_curso.js" %}"></script>
+
+
+{% endblock %}

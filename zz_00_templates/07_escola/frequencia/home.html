@@ -1,0 +1,77 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="block-header text-muted">
+            <h4>CURSOS</h4>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="block-header text-right text-muted">
+            <h4>Procure o curso aqui : </h4>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class="form-line">
+                <input type="text" class="form-control input-find-curso" placeholder="Pesquisar">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn bg-red btn-block waves-effect input-clear-curso" style="color: #fff;">Limpar</button>
+    </div>
+</div>
+
+<div class="row" id="field-curso">
+    {% for obj_curso in all_curso %}
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-curso" data-curso="{{ obj_curso.nome }}">
+        <a href="/capacitacao/frequencia/{{ obj_curso.id }}/curso">
+            <div class="card bg-green" style="height: 100px;">
+                <div class="body bg-green" style="font-size: 22px;">
+                    {{ obj_curso.nome|truncatechars:52 }}
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block content_js %}
+
+<script>
+    $(".input-find-curso").keyup(function(){
+        area = $('#field-curso');
+        box = area.find('.col-curso');
+        for( i = 0 ; i < box.length ; i++ ){
+            nome_curso = box[i].getAttribute('data-curso').toLocaleUpperCase();
+            valor_dig = this.value.toLocaleUpperCase();
+
+            if (nome_curso.indexOf(valor_dig) == -1){
+                $(box[i]).css('display', 'none')
+            }else{
+                $(box[i]).css('display', 'block')
+            }
+        }
+
+    });
+    $(".input-clear-curso").click(function(){
+        area = $('#field-curso');
+        box = area.find('.col-curso');
+        for( i = 0 ; i < box.length ; i++ ){
+            $(box[i]).css('display', 'block')
+        }
+        $(".input-find-curso")[0].value = ''
+    });
+</script>
+
+{% endblock %}

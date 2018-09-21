@@ -1,0 +1,90 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- JQuery DataTable Css -->
+    <link href="{% static "material/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>TURMAS CADASTRADAS NO CURSO <span class="label label-info">{{ obj_curso.nome }}</span></h2>
+            </div>
+            <div class="body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Nome da turma</th>
+                                        <th>Turno</th>
+                                        <th>Dias de aula</th>
+                                        <th>Local</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for turma_por_curso in turma_by_curso %}
+                                    <tr>
+                                        <td>{{ turma_por_curso.nome }}</td>
+                                        <td>{{ turma_por_curso.turno }}</td>
+                                        <td>
+                                            {% if turma_por_curso.dia_seg %}<span class="label bg-teal">Seg</span>{% endif %}
+                                            {% if turma_por_curso.dia_ter %}<span class="label bg-blue">Ter</span>{% endif %}
+                                            {% if turma_por_curso.dia_qua %}<span class="label bg-lime">Qua</span>{% endif %}
+                                            {% if turma_por_curso.dia_qui %}<span class="label bg-grey">Qui</span>{% endif %}
+                                            {% if turma_por_curso.dia_sex %}<span class="label bg-green">Sex</span>{% endif %}
+                                            {% if turma_por_curso.dia_sab %}<span class="label bg-red">Sab</span>{% endif %}
+                                            {% if turma_por_curso.dia_dom %}<span class="label bg-purple">Dom</span>{% endif %}
+                                        </td>
+                                        <td data-toggle="tooltip" data-placement="top" title="{{ turma_por_curso.local_turma.nome }}">
+                                            {{ turma_por_curso.local_turma.nome|truncatechars:40 }}
+                                        </td>
+                                        <td>
+                                            <a href="/capacitacao/frequencia/{{ id_curso }}/curso/{{ turma_por_curso.id }}/turma/">
+                                                <button type="button" class="btn bg-grey btn-xs btn-block waves-effect">
+                                                    <i class="material-icons">drafts</i>
+                                                    <span>Cadastrar frequência</span>
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static "material/plugins/jquery-datatable/jquery.dataTables.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.flash.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/jszip.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/pdfmake.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/vfs_fonts.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.html5.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.print.min.js" %}"></script>
+
+    <script src="{% static "material/js/pages/ui/tooltips-popovers.js" %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static "project/07_escola/consulta.js" %}"></script>
+
+{% endblock %}

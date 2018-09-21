@@ -1,0 +1,145 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- JQuery DataTable Css -->
+    <link href="{% static "material/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" %}" rel="stylesheet">
+    <!-- Sweetalert Css -->
+    <link href="{% static "material/plugins/sweetalert/sweetalert.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<div class="row clearfix js-sweetalert" style="display: none;">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <button class="btn btn-primary waves-effect btn-alert-turma" data-type="success">Alerta turma cheia</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-4"><h2>ADICIONAR ALUNOS DA TURMA</h2></div>
+                    <div class="col-md-4">
+                        <a href="/capacitacao/turma/listar">
+                            <button type="button" class="btn bg-grey btn-xs btn-block waves-effect">
+                                <i class="material-icons">keyboard_backspace</i>
+                                <span>Sair</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                    {% if turma_completa %}
+                        <a href="/capacitacao/turma/{{ id_turma }}/finalizar_turma">
+                        <button type="button" class="btn bg-purple btn-xs btn-block waves-effect">
+                                <i class="material-icons">trending_flat</i>
+                                <span>Finalizar</span>
+                            </button>
+                        </a>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <table class="table table-bordered table-striped table-hover dataTable js-basic-example">
+                            <thead>
+                                <tr>
+                                    <th>Nome do aluno</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Nome do aluno</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                            {% for particip in all_participantes %}
+                                <tr>
+                                    <td>{{ particip.nome_completo }}</td>
+                                    <td>
+                                        {% if turma_completa %}
+                                        <div class="js-sweetalert">
+                                            <button type="button" class="btn bg-red btn-xs btn-block waves-effect" data-type="basic">
+                                                <span>Turma cheia</span>
+                                            </button>
+                                        </div>
+                                        {% else %}
+                                        <a href="/capacitacao/turma/{{ id_turma }}/inserir_aluno_turma/{{ particip.id }}/aluno">
+                                            <button type="button" class="btn bg-blue btn-xs btn-block waves-effect">
+                                                <i class="material-icons">person_add</i>
+                                                <span>INSERIR</span>
+                                            </button>
+                                        </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            {% for chamada in all_alunos_turma %}
+                                <li class="list-group-item">
+                                    <strong>{{ forloop.counter }} - </strong> {{ chamada.aluno.nome_completo }}
+                                    <a href="/capacitacao/turma/{{ chamada.turma.id }}/remover_aluno_turma/{{ chamada.aluno.id }}/aluno" style="float: right;">
+                                        <span class="badge bg-red">Remover</span>
+                                    </a>
+                                </li>
+                            {% empty %}
+                                <li class="list-group-item text-center"><h5>NENHUM ALUNO CADASTRADO NESSE TURMA</h5></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static "material/plugins/jquery-datatable/jquery.dataTables.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.flash.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/jszip.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/pdfmake.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/vfs_fonts.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.html5.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.print.min.js" %}"></script>
+
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-notify/bootstrap-notify.js" %}"></script>
+    <!-- SweetAlert Plugin Js -->
+    <script src="{% static "material/plugins/sweetalert/sweetalert.min.js" %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static "project/07_escola/aluno_turma.js" %}"></script>
+
+    <script>
+        {% if turma_completa %}
+        setTimeout(function(){
+            $('.btn-alert-turma').click()
+        }, 1000);
+        {% endif %}
+    </script>
+
+{% endblock %}
+

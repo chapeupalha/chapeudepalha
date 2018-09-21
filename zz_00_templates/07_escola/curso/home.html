@@ -1,0 +1,86 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static "material/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <a href="/capacitacao/curso/cadastro">
+            <div class="info-box-4 hover-zoom-effect">
+                <div class="icon">
+                    <i class="material-icons col-green">fiber_new</i>
+                </div>
+                <div class="content" style="cursor: pointer;">
+                    <div class="text">CADASTRAR</div>
+                    <div class="number">Curso</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <a href="/capacitacao/curso/lista">
+            <div class="info-box-4 hover-zoom-effect">
+                <div class="icon">
+                    <i class="material-icons col-blue">devices</i>
+                </div>
+                <div class="content" style="cursor: pointer;">
+                    <div class="text">CONSULTAR</div>
+                    <div class="number">Cursos</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <a href="/capacitacao/curso/alterar">
+            <div class="info-box-4 hover-zoom-effect">
+                <div class="icon">
+                    <i class="material-icons col-deep-orange">update</i>
+                </div>
+                <div class="content" style="cursor: pointer;">
+                    <div class="text">ALTERAR</div>
+                    <div class="number">Curso</div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>CAPACITAÇÃO</h2>
+            </div>
+            <div class="body">
+
+                <div class="row">
+                    <div class="col-md-4">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{% static "material/plugins/jquery-countto/jquery.countTo.js" %}"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="{% static "material/plugins/jquery-sparkline/jquery.sparkline.js" %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static "material/js/helpers.js" %}"></script>
+    <script src="{% static "material/js/pages/widgets/infobox/infobox-5.js" %}"></script>
+
+{% endblock %}
