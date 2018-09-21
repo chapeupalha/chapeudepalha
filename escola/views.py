@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
+import datetime
 
 from escola.forms import cadastro_secretaria_form, cadastro_local_form, cadastro_curso_form, cadastro_turma_form
 
-from escola.models import Secretaria, Local, Curso, Turma, aluno_participa_turma
+from escola.models import Secretaria, Local, Curso, Turma, aluno_participa_turma, Aula_frequencia
 from core.models import Status_Geral
 from participante.models import Participante
 
@@ -322,3 +323,56 @@ def finalizar_turma(request, id_turma):
 def frequencia_home(request):
     all_curso = Curso.objects.all()
     return render(request, '07_escola/frequencia/home.html', locals())
+
+
+def frequencia_curso_turma(request, id_curso):
+    obj_curso = Curso.objects.get(id=id_curso)
+
+    turma_by_curso = Turma.objects.filter(curso_turma=obj_curso)
+
+    # turma_by_curso = aluno_participa_turma.objects.filter(curso=obj_curso)
+
+    return render(request, '07_escola/frequencia/curso_turma.html', locals())
+
+
+def cadastro_frequencia_aluno(request, id_curso, id_turma):
+    obj_curso = Curso.objects.get(id=id_curso)
+    obj_turma = Turma.objects.get(id=id_turma)
+
+    chamada_completa = Aula_frequencia.objects.filter(turma=obj_turma)
+
+    if request.method == 'POST':
+        beneficiario = Participante.objects.get(card_id=request.POST.get('card-frequencia'))
+        now = datetime.datetime.now()
+        diaSemana = None
+        if datetime.datetime.now().isoweekday() == 1:
+            diaSemana = 'Segunda-feira'
+        elif datetime.datetime.now().isoweekday() == 2:
+            diaSemana = 'Terça-feira'
+        elif datetime.datetime.now().isoweekday() == 3:
+            diaSemana = 'Quarta-feira'
+        elif datetime.datetime.now().isoweekday() == 4:
+            diaSemana = 'Quinta-feira'
+        elif datetime.datetime.now().isoweekday() == 5:
+            diaSemana = 'Sexta-feira'
+        elif datetime.datetime.now().isoweekday() == 6:
+            diaSemana = 'Sábado'
+        elif datetime.datetime.now().isoweekday() == 7:
+            diaSemana = 'Domingo'
+
+        aluno_registrado = Aula_frequencia.objects.filter(turma=obj_turma, aluno=beneficiario, dia_semana=diaSemana).exists()
+        aluno_participa_da_turma = aluno_participa_turma.objects.filter(turma=obj_turma, aluno=beneficiario).exists()
+
+        if not aluno_registrado:
+            if aluno_participa_da_turma:
+                chamada = Aula_frequencia(
+                    dia_semana=diaSemana,
+                    data_aula=now,
+                    turma=obj_turma,
+                    aluno=beneficiario,
+                )
+                chamada.save()
+        chamada_completa = Aula_frequencia.objects.filter(turma=obj_turma)
+        return redirect('/capacitacao/frequencia/%s/curso/%s/turma/' % (id_curso, id_turma))
+
+    return render(request, '07_escola/frequencia/cadastro_frequencia_aluno.html', locals())

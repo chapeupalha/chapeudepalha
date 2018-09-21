@@ -1,0 +1,346 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- JQuery DataTable Css -->
+    <link href="{% static "material/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" %}" rel="stylesheet">
+    <!-- Sweetalert Css -->
+    <link href="{% static "material/plugins/sweetalert/sweetalert.css" %}" rel="stylesheet" />
+    <style>
+    @keyframes pulse_animation {
+        10% { transform: scale(0.95); }
+        20% { transform: scale(1); }
+        30% { transform: scale(1.05); }
+        40% { transform: scale(1); }
+        50% { transform: scale(0.95); }
+        60% { transform: scale(0.90); }
+        70% { transform: scale(0.95); }
+        80% { transform: scale(1); }
+        90% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .pulse {
+        animation-name: pulse_animation;
+        animation-duration: 5000ms;
+        transform-origin:70% 70%;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    table tr td:nth-child(1) {
+        background: #E1E1E1;
+        width: 300px;
+        overflow: hidden;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-4"><h2>CHAMADA DA TURMA</h2></div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="button-demo js-modal-buttons">
+                            <button type="button" data-color="grey" class="btn bg-grey btn-block waves-effect">REGISTRAR FREQUÊNCIA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="overflow-x: auto;">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>NOME COMPLETO DO ALUNO</th>
+                                        <th>01</th>
+                                        <th>02</th>
+                                        <th>03</th>
+                                        <th>04</th>
+                                        <th>05</th>
+                                        <th>06</th>
+                                        <th>07</th>
+                                        <th>08</th>
+                                        <th>09</th>
+                                        <th>10</th>
+                                        <th>11</th>
+                                        <th>12</th>
+                                        <th>13</th>
+                                        <th>14</th>
+                                        <th>15</th>
+                                        <th>16</th>
+                                        <th>17</th>
+                                        <th>18</th>
+                                        <th>19</th>
+                                        <th>20</th>
+                                        <th>21</th>
+                                        <th>22</th>
+                                        <th>23</th>
+                                        <th>24</th>
+                                        <th>25</th>
+                                        <th>26</th>
+                                        <th>27</th>
+                                        <th>28</th>
+                                        <th>29</th>
+                                        <th>30</th>
+                                        <th>31</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for chamada_turma in chamada_completa %}
+                                    <tr>
+                                        <td class="nome_part">{{ chamada_turma.aluno.nome_completo }}</td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '01' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '02' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '03' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '04' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '05' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '06' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '07' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '08' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '09' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '10' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '11' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '12' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '13' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '14' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '15' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '16' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '17' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '18' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '19' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '20' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '21' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '22' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '23' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '24' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '25' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '26' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '27' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '28' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '29' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '30' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                        {% if chamada_turma.data_aula|date:"d" == '31' %}
+                                            <i class="material-icons" style="font-size: 12px">account_circle</i>
+                                        {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- For Material Design Colors -->
+<div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-col-grey">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="defaultModalLabel">APROXIME O CARTÃO PARA FAZER A LEITURA</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-md-offset-4 col-md-4 text-center">
+                        <div style="border: 1px solid #fff;padding: 50px 0;border-radius: 0 20px;margin: 5px 0 30px 0;box-shadow: 7px 7px 8px #888888;">
+                            <i class="material-icons pulse" style="font-size: 120px; color: #CDDC39;">wifi</i>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="text" id="input_card" name="card-frequencia" class="form-control" autofocus >
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static "material/plugins/jquery-datatable/jquery.dataTables.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.flash.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/jszip.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/pdfmake.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/vfs_fonts.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.html5.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.print.min.js" %}"></script>
+
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-notify/bootstrap-notify.js" %}"></script>
+    <!-- SweetAlert Plugin Js -->
+    <script src="{% static "material/plugins/sweetalert/sweetalert.min.js" %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static "project/07_escola/aluno_turma.js" %}"></script>
+
+    <script>
+
+        $('.js-modal-buttons .btn').on('click', function () {
+            $('#mdModal').modal('show');
+        });
+
+        setTimeout(function(){
+            $('#mdModal').modal('show');
+            setTimeout(function(){
+                document.getElementById("input_card").focus();
+            }, 500);
+        }, 500);
+
+        $('.modal-content').on('click', function () {
+            document.getElementById("input_card").focus();
+        });
+
+    </script>
+
+{% endblock %}
+

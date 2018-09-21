@@ -80,3 +80,12 @@ class aluno_participa_turma(models.Model):
 
     turma = models.ForeignKey(Turma, null=True, blank=True, on_delete=models.CASCADE)
     aluno = models.ForeignKey(Participante, null=True, blank=True, on_delete=models.CASCADE)
+
+
+class Aula_frequencia(models.Model):
+    dt_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    dia_semana = models.CharField(max_length=500, blank=True)
+    data_aula = models.DateTimeField(null=True, blank=True)
+
+    turma = models.ForeignKey(Turma, null=True, blank=True, on_delete=models.CASCADE)
+    aluno = models.ForeignKey(Participante, null=True, blank=True, on_delete=models.CASCADE)

@@ -32,4 +32,6 @@ urlpatterns = [
     path('turma/<int:id_turma>/finalizar_turma', finalizar_turma, name='finalizar_turma'),
 
     path('frequencia/', frequencia_home, name='frequencia_home'),
+    path('frequencia/<int:id_curso>/curso', frequencia_curso_turma, name='frequencia_curso_turma'),
+    path('frequencia/<int:id_curso>/curso/<int:id_turma>/turma/', cadastro_frequencia_aluno, name='cadastro_frequencia_aluno'),
 ]
