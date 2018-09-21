@@ -1,3 +1,6 @@
+import simplejson
+from django.db.models import Count
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import datetime
 
@@ -106,3 +109,65 @@ def finalizar_ocorrencia(request, id_ocorrencia):
         return redirect('/atividade/ocorrencia/%s/consulta' % (ocorrencia_cadastrada.id,))
 
     return render(request, '06_ocorrencia/consulta_ocorrencia.html', locals())
+
+
+def ajax_marker_atividade(request):
+
+    if request.POST['tipo'] == 'Todas':
+        qs = Trabalho_campo.objects.filter().values('at_municipio__latitude', 'at_municipio__longitude',
+                                                    'at_municipio__nome').annotate(count=Count('at_municipio'))
+    elif request.POST['tipo'] == 'Andamento':
+        qs = Trabalho_campo.objects.filter(at_status=20010100).values('at_municipio__latitude',
+                                                                      'at_municipio__longitude',
+                                                                      'at_municipio__nome').annotate(count=Count('at_municipio'))
+    elif request.POST['tipo'] == 'Encerrado':
+        qs = Trabalho_campo.objects.filter(at_status=20020100).values('at_municipio__latitude',
+                                                                      'at_municipio__longitude',
+                                                                      'at_municipio__nome').annotate(count=Count('at_municipio'))
+    elif request.POST['tipo'] == 'Cancelado':
+        qs = Trabalho_campo.objects.filter(at_status=20011111).values('at_municipio__latitude',
+                                                                      'at_municipio__longitude',
+                                                                      'at_municipio__nome').annotate(count=Count('at_municipio'))
+
+    context = []
+
+    for x in qs:
+        context.append({
+            'lat': float(x['at_municipio__latitude']),
+            'long': float(x['at_municipio__longitude']),
+            'municipio': x['at_municipio__nome'],
+            'qtd': x['count'],
+        })
+
+    return HttpResponse(simplejson.dumps(context), content_type='application/json')
+
+
+def ajax_marker_ocorrencia(request):
+
+    if request.POST['tipo'] == 'Todas':
+        qs = Ocorrencia.objects.filter().values('municipio__latitude', 'municipio__longitude',
+                                                    'municipio__nome').annotate(count=Count('municipio'))
+    elif request.POST['tipo'] == 'Andamento':
+        qs = Ocorrencia.objects.filter(status=30020200).values('municipio__latitude',
+                                                                      'municipio__longitude',
+                                                                      'municipio__nome').annotate(count=Count('municipio'))
+    elif request.POST['tipo'] == 'Finalizada':
+        qs = Ocorrencia.objects.filter(status=30030300).values('municipio__latitude',
+                                                                      'municipio__longitude',
+                                                                      'municipio__nome').annotate(count=Count('municipio'))
+    elif request.POST['tipo'] == 'Nova':
+        qs = Ocorrencia.objects.filter(status=30010100).values('municipio__latitude',
+                                                                      'municipio__longitude',
+                                                                      'municipio__nome').annotate(count=Count('municipio'))
+
+    context = []
+
+    for x in qs:
+        context.append({
+            'lat': float(x['municipio__latitude']),
+            'long': float(x['municipio__longitude']),
+            'municipio': x['municipio__nome'],
+            'qtd': x['count'],
+        })
+
+    return HttpResponse(simplejson.dumps(context), content_type='application/json')
