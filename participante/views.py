@@ -71,7 +71,7 @@ def cadastro_basico(request, id_participante):
 
     if request.method == 'POST':
         if form_participante.is_valid():
-            status_cadastro = Status_Geral.objects.get(item='CADASTRO_USUARIO_DADOS', chave='CADASTRO_BENEFICIARIO')
+            status_cadastro = Status_Geral.objects.get(item='CADASTRO_USUARIO', chave='CADASTRO_BENEFICIARIO_DADOS')
 
             form_obj = Participante.objects.get(id=id_participante)
             form_obj = form_participante.save(commit=False)
@@ -100,7 +100,7 @@ def cadastro_representante_legal(request, id_participante):
 
     if request.method == 'POST':
         if form_representante_legal.is_valid():
-            status_cadastro = Status_Geral.objects.get(item='CADASTRO_USUARIO_DADOS', chave='CADASTRO_BENEFICIARIO')
+            status_cadastro = Status_Geral.objects.get(item='CADASTRO_USUARIO', chave='CADASTRO_BENEFICIARIO_DADOS')
 
             form_obj = Participante.objects.get(id=id_participante)
             form_obj = form_representante_legal.save(commit=False)
@@ -121,7 +121,7 @@ def cadastro_representante_legal(request, id_participante):
 def cadastro_representante_legal_situacao(request, id_participante, status):
     beneficiario = Participante.objects.get(id=id_participante)
 
-    status_cadastro = Status_Geral.objects.get(item='CADASTRO_USUARIO_DADOS', chave='CADASTRO_BENEFICIARIO')
+    status_cadastro = Status_Geral.objects.get(item='CADASTRO_USUARIO', chave='CADASTRO_BENEFICIARIO_DADOS')
 
     if status == 1:
         beneficiario.possui_representante_legal = True
@@ -208,7 +208,7 @@ def participante_cardsave(request, id_participante):
 
             beneficiario = Participante.objects.get(id=id_beneficiario)
 
-            new_status = Status_Geral.objects.get(item='CADASTRO_COMPLETO_USUARIO', chave='CADASTRO_BENEFICIARIO')
+            new_status = Status_Geral.objects.get(item='CADASTRO_USUARIO', chave='CADASTRO_BENEFICIARIO_COMPLETO')
 
             beneficiario.card_id = id_card
             beneficiario.status = new_status
