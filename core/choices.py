@@ -10,3 +10,13 @@ CHOICES_UF = (
     ("RS", "Rio Grande do Sul"),("RO", "Rondônia"),("RR", "Roraima"),("SC", "Santa Catarina"),
     ("SP", "São Paulo"),("SE", "Sergipe"),("TO", "Tocantins"),
 )
+
+CHOICES_TURNO = (
+    ("Matutino", "Matutino"),
+    ("Vespertino", "Vespertino"),
+    ("Noturno", "Noturno"),
+    ("Matutino e Vespertino", "Matutino e Vespertino"),
+    ("Matutino e Noturno", "Matutino e Noturno"),
+    ("Vespertino e Noturno", "Vespertino e Noturno"),
+    ("Matutino, Vespertino e Noturno", "Matutino, Vespertino e Noturno"),
+)

@@ -1,0 +1,210 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- Colorpicker Css -->
+    <link href="{% static "material/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" %}" rel="stylesheet" />
+    <!-- Dropzone Css -->
+    <link href="{% static "material/plugins/dropzone/dropzone.css" %}" rel="stylesheet">
+    <!-- Multi Select Css -->
+    <link href="{% static "material/plugins/multi-select/css/multi-select.css" %}" rel="stylesheet">
+    <!-- Bootstrap Spinner Css -->
+    <link href="{% static "material/plugins/jquery-spinner/css/bootstrap-spinner.css" %}" rel="stylesheet">
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="{% static "material/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" %}" rel="stylesheet">
+    <!-- Bootstrap Select Css -->
+    <link href="{% static "material/plugins/bootstrap-select/css/bootstrap-select.css" %}" rel="stylesheet" />
+    <!-- noUISlider Css -->
+    <link href="{% static "material/plugins/nouislider/nouislider.min.css" %}" rel="stylesheet" />
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static "material/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                {% if action_form == 'add' %}
+                    CADASTRO DE UMA NOVA TURMA
+                {% elif action_form == 'att' %}
+                    ATUALIZAÇÃO DA TURMA
+                {% endif %}
+                </h2>
+            </div>
+            <div class="body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <b>Nome/codigo da turma:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">school</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ turma_form.nome }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <b>Quantidade mínima de alunos:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">people_outline</i>
+                                </span>
+                                <div class="form-line" style="border: 1px solid #DDDDDD;">
+                                    {{ turma_form.qtd_aluno_min }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <b>Quantidade máxima de alunos:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">people</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ turma_form.qtd_aluno_max }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <b>Turno da aula:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">today</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ turma_form.turno }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <b>Dias da semana com aula:</b><br><br>
+                            <div class="input-group">
+                                <div class="form-line">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            {{ turma_form.dia_seg }}
+                                            <label for="md_checkbox_01">Segunda-Feira</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ turma_form.dia_ter }}
+                                            <label for="md_checkbox_02">Terça-Feira</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ turma_form.dia_qua }}
+                                            <label for="md_checkbox_03">Quarta-Feira</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ turma_form.dia_qui }}
+                                            <label for="md_checkbox_04">Quinta-Feira</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ turma_form.dia_sex }}
+                                            <label for="md_checkbox_05">Sexta-Feira</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            {{ turma_form.dia_sab }}
+                                            <label for="md_checkbox_06">Sábado</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ turma_form.dia_dom }}
+                                            <label for="md_checkbox_07">Domingo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <b>Curso da turma:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">label</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ turma_form.curso_turma }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <b>Local do curso:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">label</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ turma_form.local_turma }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <b>Observações:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">more_vert</i>
+                                </span>
+                                <div class="form-line" style="border: 1px solid #DDDDDD;">
+                                    {{ turma_form.observacoes }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-offset-8 col-md-4 col-sm-12">
+                            <button type="submit" class="btn btn-primary btn-block">
+                            {% if action_form == 'add' %}
+                                Cadastrar Turma
+                            {% elif action_form == 'att' %}
+                                Atualizar Turma
+                            {% endif %}
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="{% static "material/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" %}"></script>
+    <!-- Dropzone Plugin Js -->
+    <script src="{% static "material/plugins/dropzone/dropzone.js" %}"></script>
+    <!-- Input Mask Plugin Js -->
+    <script src="{% static "material/plugins/jquery-inputmask/jquery.inputmask.bundle.js" %}"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="{% static "material/plugins/multi-select/js/jquery.multi-select.js" %}"></script>
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="{% static "material/plugins/jquery-spinner/js/jquery.spinner.js" %}"></script>
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js" %}"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <script src="{% static "material/plugins/nouislider/nouislider.js" %}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{% static "material/plugins/momentjs/moment.js" %}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" %}"></script>
+    <script src="{% static "material/plugins/momentjs/pt-br.js" %}"></script>
+    <script src="{% static "project/07_escola/cadastro_curso.js" %}"></script>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    {% for obj_curso in all_curso %}
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="card bg-green" style="height: 100px;">
+            <div class="body bg-green" style="font-size: 22px;">
+                {{ obj_curso.nome|truncatechars:52 }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block content_js %}
+
+
+{% endblock %}
+Curso de Pesca, Mergulho Livre, Apne...

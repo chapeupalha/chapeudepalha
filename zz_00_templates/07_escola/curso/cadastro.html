@@ -1,0 +1,159 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- Colorpicker Css -->
+    <link href="{% static "material/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" %}" rel="stylesheet" />
+    <!-- Dropzone Css -->
+    <link href="{% static "material/plugins/dropzone/dropzone.css" %}" rel="stylesheet">
+    <!-- Multi Select Css -->
+    <link href="{% static "material/plugins/multi-select/css/multi-select.css" %}" rel="stylesheet">
+    <!-- Bootstrap Spinner Css -->
+    <link href="{% static "material/plugins/jquery-spinner/css/bootstrap-spinner.css" %}" rel="stylesheet">
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="{% static "material/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" %}" rel="stylesheet">
+    <!-- Bootstrap Select Css -->
+    <link href="{% static "material/plugins/bootstrap-select/css/bootstrap-select.css" %}" rel="stylesheet" />
+    <!-- noUISlider Css -->
+    <link href="{% static "material/plugins/nouislider/nouislider.min.css" %}" rel="stylesheet" />
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static "material/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                {% if action_form == 'add' %}
+                    CADASTRO DE CURSO
+                {% elif action_form == 'att' %}
+                    ATUALIZAÇÃO DE CURSO
+                {% endif %}
+                </h2>
+            </div>
+            <div class="body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <b>Nome:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">school</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ curso_form.nome }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <b>Descrição do curso:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">textsms</i>
+                                </span>
+                                <div class="form-line" style="border: 1px solid #DDDDDD;">
+                                    {{ curso_form.descricao }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <b>Quantidade de horas:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">access_time</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ curso_form.qtd_horas }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <b>Data de início:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">date_range</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ curso_form.dt_inicio }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <b>Data do término</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">date_range</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ curso_form.dt_final }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <b>Secretaria do curso:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">label</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ curso_form.secretaria_curso }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-offset-8 col-md-4 col-sm-12">
+                            <button type="submit" class="btn btn-primary btn-block">
+                            {% if action_form == 'add' %}
+                                Cadastrar Curso
+                            {% elif action_form == 'att' %}
+                                Atualizar Curso
+                            {% endif %}
+                            </button>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="{% static "material/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" %}"></script>
+    <!-- Dropzone Plugin Js -->
+    <script src="{% static "material/plugins/dropzone/dropzone.js" %}"></script>
+    <!-- Input Mask Plugin Js -->
+    <script src="{% static "material/plugins/jquery-inputmask/jquery.inputmask.bundle.js" %}"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="{% static "material/plugins/multi-select/js/jquery.multi-select.js" %}"></script>
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="{% static "material/plugins/jquery-spinner/js/jquery.spinner.js" %}"></script>
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js" %}"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <script src="{% static "material/plugins/nouislider/nouislider.js" %}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{% static "material/plugins/momentjs/moment.js" %}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" %}"></script>
+    <script src="{% static "material/plugins/momentjs/pt-br.js" %}"></script>
+    <script src="{% static "project/07_escola/cadastro_curso.js" %}"></script>
+
+
+{% endblock %}

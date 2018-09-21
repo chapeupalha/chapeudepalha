@@ -1,0 +1,189 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- Colorpicker Css -->
+    <link href="{% static "material/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" %}" rel="stylesheet" />
+    <!-- Dropzone Css -->
+    <link href="{% static "material/plugins/dropzone/dropzone.css" %}" rel="stylesheet">
+    <!-- Multi Select Css -->
+    <link href="{% static "material/plugins/multi-select/css/multi-select.css" %}" rel="stylesheet">
+    <!-- Bootstrap Spinner Css -->
+    <link href="{% static "material/plugins/jquery-spinner/css/bootstrap-spinner.css" %}" rel="stylesheet">
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="{% static "material/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" %}" rel="stylesheet">
+    <!-- Bootstrap Select Css -->
+    <link href="{% static "material/plugins/bootstrap-select/css/bootstrap-select.css" %}" rel="stylesheet" />
+    <!-- noUISlider Css -->
+    <link href="{% static "material/plugins/nouislider/nouislider.min.css" %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                {% if action_form == 'add' %}
+                    CADASTRO DE LOCAL
+                {% elif action_form == 'att' %}
+                    ATUALIZAÇÃO DO LOCAL
+                {% endif %}
+                </h2>
+            </div>
+            <div class="body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row clearfix">
+                        <div class="col-md-8">
+                            <b>Local:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">location_city</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ local_form.nome }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <b>Municipio:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">location_on</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ local_form.municipio_local }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <b>Logradouro:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">add_location</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ local_form.endereco }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <b>Numero:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">looks_two</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ local_form.end_numero }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <b>CEP</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">add_location</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ local_form.cep }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <b>Complemento:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">linear_scale</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ local_form.complemento }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <b>Responsável:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">person</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ local_form.nome_responsavel }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <b>Tel. responsável:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">phone</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ local_form.tel_responsavel }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <b>E-mail responsável:</b>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">email</i>
+                                </span>
+                                <div class="form-line">
+                                    {{ local_form.email_responsavel }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <b>Secretaria:</b>
+                            <div class="input-group">
+                                {{ local_form.secretaria }}
+                                <label for="md_checkbox_30">Local disponibilizado para uma secretaria</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-md-offset-8 col-md-4 col-sm-12">
+                            <button type="submit" class="btn btn-primary btn-block">
+                            {% if action_form == 'add' %}
+                                Cadastrar Local
+                            {% elif action_form == 'att' %}
+                                Atualizar Local
+                            {% endif %}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="{% static "material/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" %}"></script>
+    <!-- Dropzone Plugin Js -->
+    <script src="{% static "material/plugins/dropzone/dropzone.js" %}"></script>
+    <!-- Input Mask Plugin Js -->
+    <script src="{% static "material/plugins/jquery-inputmask/jquery.inputmask.bundle.js" %}"></script>
+    <!-- Multi Select Plugin Js -->
+    <script src="{% static "material/plugins/multi-select/js/jquery.multi-select.js" %}"></script>
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="{% static "material/plugins/jquery-spinner/js/jquery.spinner.js" %}"></script>
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="{% static "material/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js" %}"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <script src="{% static "material/plugins/nouislider/nouislider.js" %}"></script>
+    <script src="{% static "project/07_escola/cadastro_secretaria.js" %}"></script>
+
+{% endblock %}

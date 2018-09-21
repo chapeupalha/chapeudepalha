@@ -1,0 +1,85 @@
+{% extends "01_base/base-application.html" %}
+{% load static %}
+
+{% block content_css %}
+    <!-- JQuery DataTable Css -->
+    <link href="{% static "material/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>CONSULTA DOS CURSOS CADASTRADO</h2>
+                <small>Para atualizar, clique no nome do curso e para visualizar clique em <i class="material-icons" style="font-size: 14px;">visibility</i></small>
+            </div>
+            <div class="body">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead>
+                            <tr>
+                                <th>Nome do curso</th>
+                                <th>Qtd. de Horas</th>
+                                <th>Data de inicio</th>
+                                <th>Data do término</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nome do curso</th>
+                                <th>Qtd. de Horas</th>
+                                <th>Data de inicio</th>
+                                <th>Data do término</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for objcurso in all_cursos %}
+                            <tr>
+                                <td>
+                                    <a href="/capacitacao/curso/{{ objcurso.id }}/atualizar">
+                                        {{ objcurso.nome }}
+                                    </a>
+                                </td>
+                                <td class="text-center">{{ objcurso.qtd_horas }}</td>
+                                <td>{{ objcurso.dt_inicio|date:"Y-m-d" }}</td>
+                                <td>{{ objcurso.dt_final|date:"Y-m-d" }}</td>
+                                <td>
+                                    <a href="/capacitacao/curso/{{ objcurso.id }}/visualizar">
+                                        <i class="material-icons">visibility</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block content_js %}
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static "material/plugins/jquery-datatable/jquery.dataTables.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.flash.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/jszip.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/pdfmake.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/vfs_fonts.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.html5.min.js" %}"></script>
+    <script src="{% static "material/plugins/jquery-datatable/extensions/export/buttons.print.min.js" %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static "project/07_escola/consulta.js" %}"></script>
+
+{% endblock %}
