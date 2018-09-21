@@ -69,7 +69,7 @@ class TipoCopiaDocumento(models.Model):
 class Participante(models.Model):
     usuario = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
-    dt_cadastro = models.DateTimeField(auto_now_add=True, null=True)
+    dt_cadastro = models.DateField(auto_now_add=True, null=True)
     dt_alteracao = models.DateTimeField(auto_now_add=True, null=True)
     usuario_updated = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='usuario_update')
 
@@ -122,8 +122,6 @@ class Participante(models.Model):
     renda_mensal = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, verbose_name="Renda mensal do participante")
     qtd_pessoas_casa = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de pessoas que moram na casa")
     qtd_pessoas_contribuem_renda = models.IntegerField(null=True, blank=True, verbose_name="Quantidade de pessoas que contribuem com a renda")
-    # beneficiario_indicado = models.BooleanField(null=True, verbose_name="Participante será o indicado")
-    # verificacao_listagem_desligado = models.BooleanField(null=True, verbose_name="Apresentou copia da listagem de desligados")
 
     verificacao_nis = models.BooleanField(default=False, verbose_name="Apresentou copia do NIS")
     verificacao_contrato_trabalho = models.BooleanField(default=False, verbose_name="Apresentou copia do contrato de trabalho")
