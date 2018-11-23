@@ -12,6 +12,7 @@ from atividade.utils import generate_protocolo
 
 
 def home_atividade(request):
+    active_menu = 'atividade'
 
     atividades_cadastradas = Trabalho_campo.objects.all()
     status_atividade = Status_Geral.objects.filter(item='ATIVIDADE_TRABALHO')
@@ -24,6 +25,7 @@ def home_atividade(request):
 
 
 def cadastro_atividade(request):
+    active_menu = 'atividade'
     form_atividade = cadastro_atividade_trabalho(request.POST or None)
 
     if request.method == 'POST':
@@ -40,6 +42,7 @@ def cadastro_atividade(request):
 
 
 def home_ocorrencia(request):
+    active_menu = 'ocorrencia'
 
     all_ocorrencia = Ocorrencia.objects.all()
 
@@ -50,6 +53,7 @@ def home_ocorrencia(request):
 
 
 def cadastro_ocorrencia(request):
+    active_menu = 'ocorrencia'
     form_ocorrencia = cadastro_ocorrencia_form(request.POST or None)
 
     if request.method == 'POST':
@@ -70,6 +74,7 @@ def cadastro_ocorrencia(request):
 
 
 def consulta_ocorrencia(request, id_ocorrencia):
+    active_menu = 'ocorrencia'
     ocorrencia_cadastrada = Ocorrencia.objects.get(id=id_ocorrencia)
     solucao_cadastrada = Tarefa_correncia.objects.filter(ocorrencia=ocorrencia_cadastrada)
 
@@ -77,6 +82,7 @@ def consulta_ocorrencia(request, id_ocorrencia):
 
 
 def solucao_ocorrencia(request, id_ocorrencia):
+    active_menu = 'ocorrencia'
     ocorrencia_cadastrada = Ocorrencia.objects.get(id=id_ocorrencia)
     form_solucao = cadastro_solucao_form(request.POST or None)
 
@@ -98,6 +104,7 @@ def solucao_ocorrencia(request, id_ocorrencia):
 
 
 def finalizar_ocorrencia(request, id_ocorrencia):
+    active_menu = 'ocorrencia'
     ocorrencia_cadastrada = Ocorrencia.objects.get(id=id_ocorrencia)
     solucao_cadastrada = Tarefa_correncia.objects.filter(ocorrencia=ocorrencia_cadastrada).count()
     status_ocorrencia = Status_Geral.objects.get(item='OCORRENCIA_PROJETO', chave='OCORRENCIA_FINALIZADA')

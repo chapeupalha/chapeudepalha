@@ -17,6 +17,7 @@ from django.core import serializers
 
 
 def principal(request):
+    active_menu = 'participante'
 
     total_cadastros = len(Participante.objects.all())
     cadastro_andamento = len(Participante.objects.filter(status__in=[10010100, 10010200]))
@@ -30,6 +31,7 @@ def principal(request):
 
 
 def novo_cadastro(request):
+    active_menu = 'participante'
     form_participante = cadastro_participante(request.POST or None)
 
     if request.method == 'POST':
@@ -55,6 +57,7 @@ def novo_cadastro(request):
 
 
 def cadastro_basico(request, id_participante):
+    active_menu = 'participante'
     tab_active = 'participante'
     beneficiario = Participante.objects.get(id=id_participante)
 
@@ -90,6 +93,7 @@ def cadastro_basico(request, id_participante):
 
 
 def cadastro_representante_legal(request, id_participante):
+    active_menu = 'participante'
     tab_active = 'representante'
     beneficiario = Participante.objects.get(id=id_participante)
 
@@ -119,6 +123,7 @@ def cadastro_representante_legal(request, id_participante):
 
 
 def cadastro_representante_legal_situacao(request, id_participante, status):
+    active_menu = 'participante'
     beneficiario = Participante.objects.get(id=id_participante)
 
     status_cadastro = Status_Geral.objects.get(item='CADASTRO_USUARIO', chave='CADASTRO_BENEFICIARIO_DADOS')
@@ -144,6 +149,7 @@ def cadastro_representante_legal_situacao(request, id_participante, status):
 
 
 def cadastro_documentos(request, id_participante):
+    active_menu = 'participante'
     tab_active = 'documento'
     beneficiario = Participante.objects.get(id=id_participante)
 
@@ -200,9 +206,10 @@ def cadastro_documentos(request, id_participante):
 
 
 def participante_cardsave(request, id_participante):
+    active_menu = 'participante'
 
     if request.method == 'POST':
-        if request.is_ajax() and request.POST:
+        if request.is_ajax():
             id_beneficiario = request.POST.get('id_particip')
             id_card = request.POST.get('codcard')
 
@@ -224,6 +231,7 @@ def participante_cardsave(request, id_participante):
 
 
 def consultar_beneficiario(request):
+    active_menu = 'participante'
 
     all_participantes = Participante.objects.all()
 
@@ -234,11 +242,13 @@ def consultar_beneficiario(request):
 
 
 def consultar_dados_beneficiario(request, id_participante):
+    active_menu = 'participante'
 
     return render(request, '04_participante/consultar_dados_beneficiario.html', locals())
 
 
 def consultar_dados_beneficiario_cartao(request):
+    active_menu = 'participante'
 
     if request.method == 'POST':
         cartao_id = request.POST.get('cartao_id')

@@ -1,0 +1,17 @@
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (10010100, 'CADASTRO_USUARIO', 'CADASTRO_BENEFICIARIO', 'Cadastro do beneficiário iniciado', 10010200, 1);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (20010100, 'ATIVIDADE_TRABALHO', 'CADASTRO_ATIVIDADE_ANDAMENTO', 'Atividade de trabalho de campo cadastrada em andamento', 20010200, 1);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (20020100, 'ATIVIDADE_TRABALHO', 'CADASTRO_ATIVIDADE_ENCERRADO', 'Atividade de trabalho de campo encerrada', NULL, 2);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (20011111, 'ATIVIDADE_TRABALHO', 'CADASTRO_ATIVIDADE_CANCELADO', 'Atividade de trabalho de campo cancelada', NULL, 3);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (30010100, 'OCORRENCIA_PROJETO', 'CADASTRO_OCORRENCIA_INICIAL', 'Ocorrência em aberto', 30020200, 1);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (30020200, 'OCORRENCIA_PROJETO', 'OCORRENCIA_SOLUCAO_CADASTRADA', 'Ocorrência em andamento', 30030300, 2);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (30030300, 'OCORRENCIA_PROJETO', 'OCORRENCIA_FINALIZADA', 'Ocorrência em finalizada', 30040400, 3);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (1010100, 'SECRETARIA', 'CADASTRO_SECRETARIA', 'Ativo', 1010200, 1);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (1020200, 'SECRETARIA', 'DESABILITAR_SECRETARIA', 'Inativo', NULL, 2);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (2010100, 'LOCAL_ESCOLA', 'CADASTRO_LOCAL', 'Cadastro de novo local', 2010200, 1);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (2020200, 'LOCAL_ESCOLA', 'DESABILITAR_LOCAL', 'Local desabilitado', NULL, 2);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (10001001, 'CURSO', 'CADASTRO_NOVO_CURSO', 'Curso cadastrado', 10001002, 1);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (10002002, 'CURSO', 'CURSO_FINALIZADO', 'Curso Finalizado', NULL, 2);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (50050100, 'TURMA', 'CADASTRO_TURMA', 'Turma aberta', 50060100, 1);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (50060100, 'TURMA', 'ALUNOS_CADASTRADO_TURMA', 'Turma fechada', 50500200, 2);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (10010200, 'CADASTRO_USUARIO', 'CADASTRO_DADOS_BENEFICIARIO', 'Cadastro dos dados do beneficiário', 10010300, 2);
+INSERT INTO public.core_status_geral (id, item, chave, texto, next, ordem) VALUES (10010300, 'CADASTRO_USUARIO', 'CADASTRO_COMPLETO_BENEFICIARIO', 'Cadastro completo dos dados do beneficiário', 10010400, 3);
